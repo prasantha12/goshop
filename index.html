@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>360 Tours Lanka | Your Sri Lankan Travel Partner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --primary-green: #27ae60;
@@ -31,15 +32,19 @@
         }
 
         .logo { font-size: 22px; font-weight: bold; color: var(--primary-green); cursor: pointer; text-transform: uppercase; }
+        
         .nav-links { list-style: none; display: flex; gap: 20px; margin: 0; }
         .nav-links a { text-decoration: none; color: var(--dark-blue); font-weight: 600; font-size: 13px; cursor: pointer; transition: 0.3s; }
         .nav-links a:hover { color: var(--primary-green); }
+
+        /* HAMBURGER TOGGLE STYLE */
+        .menu-toggle { display: none; font-size: 24px; cursor: pointer; color: var(--dark-blue); }
 
         /* --- Page Management --- */
         .page-section { display: none; padding-top: 80px; min-height: 100vh; box-sizing: border-box; }
         .active-section { display: block; }
 
-        /* --- CONTAINER STYLES --- */
+        /* --- FORM & CONTENT STYLES --- */
         .form-container, .quick-inquiry-container, .content-container {
             background: white; max-width: 850px; margin: 40px auto;
             padding: 50px; border-radius: 12px;
@@ -53,7 +58,33 @@
             border-bottom: 2px solid #eee; padding-bottom: 15px;
         }
 
-        /* --- FORM ELEMENTS --- */
+        .terms-text { line-height: 1.8; color: #444; font-size: 14px; }
+        .terms-text h3 { color: var(--dark-blue); margin-top: 25px; border-left: 4px solid var(--primary-green); padding-left: 10px; }
+
+        /* --- INTERACTIVE PAYMENT STYLES --- */
+        .payment-choice-box {
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .payment-choice-box:hover { border-color: var(--primary-green); }
+        .payment-choice-header {
+            padding: 15px 20px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+        }
+        .payment-choice-content {
+            display: none;
+            padding: 15px 20px;
+            border-top: 1px dashed var(--border-gray);
+            background: #fdfdfd;
+        }
+        .payment-choice-box.active { border-left: 5px solid var(--primary-green); }
+        .payment-choice-box.active .payment-choice-content { display: block; }
+
         .form-row { display: flex; align-items: center; margin-bottom: 22px; }
         .label-text { width: 220px; font-weight: 600; font-size: 14px; color: #555; }
 
@@ -72,7 +103,8 @@
         }
 
         .checkbox-item { display: flex; align-items: center; gap: 6px; font-size: 13px; cursor: pointer; }
-        
+        .validation-text { font-size: 12px; margin-left: 10px; color: #7f8c8d; font-style: italic; }
+
         .budget-container {
             border: 1px solid var(--border-gray); padding: 15px;
             width: 220px; border-radius: 5px; background-color: #fcfcfc;
@@ -82,11 +114,10 @@
             background: var(--primary-green); color: white; padding: 15px 45px;
             border: none; border-radius: 50px; cursor: pointer;
             display: block; margin: 40px auto 0; font-size: 16px;
-            font-weight: 600; text-transform: uppercase; transition: 0.3s;
+            font-weight: 600; text-transform: uppercase;
         }
-        .submit-btn:hover { background: #1e8449; transform: translateY(-2px); }
 
-        /* --- TOURS GRID --- */
+        /* --- Packages Grid --- */
         .grid-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1200px; margin: 40px auto; padding: 0 20px; }
         .card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .card img { width: 100%; height: 200px; object-fit: cover; }
@@ -96,53 +127,54 @@
             float: right; border: 1px solid var(--primary-green); 
             padding: 5px 15px; border-radius: 20px; transition: 0.3s;
         }
+        .explore-link:hover { background: var(--primary-green); color: white; }
 
-        /* --- PAYMENT ACCORDION --- */
-        .payment-choice-box { border: 1px solid var(--border-gray); border-radius: 8px; margin-bottom: 12px; cursor: pointer; }
-        .payment-choice-header { padding: 15px 20px; font-weight: 600; display: flex; justify-content: space-between; }
-        .payment-choice-content { display: none; padding: 15px 20px; border-top: 1px dashed var(--border-gray); background: #fdfdfd; }
-        .payment-choice-box.active { border-left: 5px solid var(--primary-green); }
-        .payment-choice-box.active .payment-choice-content { display: block; }
+        /* --- Details View --- */
+        .details-wrapper { max-width: 900px; margin: 40px auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .details-img { width: 100%; height: 400px; object-fit: cover; border-radius: 10px; margin-bottom: 20px; }
+        .back-link { cursor: pointer; color: var(--primary-green); font-weight: bold; display: block; margin-bottom: 15px; }
 
-        /* --- MOBILE RESPONSIVENESS (Zero Layout Change) --- */
+        footer { background: var(--dark-blue); color: white; text-align: center; padding: 30px; font-size: 13px; }
+
+        /* --- UPDATED MOBILE RESPONSIVENESS WITH MENU --- */
         @media (max-width: 900px) { 
+            .menu-toggle { display: block; }
+            .nav-links { 
+                display: none; flex-direction: column; position: absolute; top: 60px; right: 0; 
+                background: white; width: 100%; text-align: center; box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                padding: 20px 0; gap: 15px;
+            }
+            .nav-links.mobile-active { display: flex; }
             .grid-container { grid-template-columns: 1fr 1fr; } 
-            .form-container, .quick-inquiry-container, .content-container { width: 90%; padding: 25px; }
         }
-
         @media (max-width: 600px) { 
-            nav { flex-direction: column; height: auto; padding: 10px; }
-            .nav-links { gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 10px; }
-            .page-section { padding-top: 130px; }
             .grid-container { grid-template-columns: 1fr; } 
             .form-row { flex-direction: column; align-items: flex-start; }
             .label-text { margin-bottom: 5px; width: 100%; }
-            input[type="text"], input[type="email"], input[type="date"], select, textarea, .budget-container { width: 100% !important; box-sizing: border-box; }
-            .pax-group { width: 100%; justify-content: flex-start; }
         }
-
-        footer { background: var(--dark-blue); color: white; text-align: center; padding: 30px; font-size: 13px; }
     </style>
 </head>
 <body>
 
 <nav>
     <div class="logo" onclick="showPage('home')">360 Tours Lanka</div>
-    <ul class="nav-links">
+    <div class="menu-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></div>
+    <ul class="nav-links" id="navLinks">
         <li><a onclick="showPage('home')">Home</a></li>
         <li><a onclick="showPage('packages')">Tours</a></li>
         <li><a onclick="showPage('inquiry-page')">Inquiry</a></li>
         <li><a onclick="showPage('payments')">Payments</a></li>
-        <li><a onclick="showPage('terms-page')">Terms</a></li>
+        <li><a onclick="showPage('terms-page')">Terms & Conditions</a></li>
         <li><a onclick="showPage('about')">About Us</a></li>
+        <li><a onclick="showPage('contact-page')">Contact</a></li>
     </ul>
 </nav>
 
 <div id="home" class="page-section active-section">
-    <div style="height: 50vh; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1546708973-b339540b5162?w=1200'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; padding: 20px;">
+    <div style="height: 70vh; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1546708973-b339540b5162?w=1200'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white;">
         <h1>Explore Sri Lanka</h1>
         <p>Premium travel experiences across the teardrop isle.</p>
-        <button onclick="showPage('packages')" class="submit-btn" style="margin-top:20px;">View All Tours</button>
+        <button onclick="showPage('packages')" style="background: var(--primary-green); color: white; padding: 15px 35px; border: none; border-radius: 50px; font-weight: bold; cursor: pointer;">View All Tours</button>
     </div>
 
     <div class="quick-inquiry-container">
@@ -150,16 +182,27 @@
         <form>
             <div class="form-row"><div class="label-text">Name-</div><input type="text" style="width: 250px;"></div>
             <div class="form-row"><div class="label-text">Country-</div><select class="country-dropdown-class" style="width: 272px;"></select></div>
-            <div class="form-row"><div class="label-text">Email address-</div><input type="email" required style="width: 250px;"></div>
+            <div class="form-row"><div class="label-text">Email address-</div><input type="email" required style="width: 250px;"><span class="validation-text">(required)</span></div>
             <div class="form-row"><div class="label-text">Arrival date-</div><input type="date"></div>
             <div class="form-row"><div class="label-text">Departure date-</div><input type="date"></div>
             <div class="form-row"><div class="label-text">No of pax.</div>
                 <div class="pax-group">
                     <select class="fill-60 num-dropdown"></select><span>Adult</span>
                     <select class="fill-60 num-dropdown"></select><span>Children</span>
+                    <select class="fill-60 num-dropdown"></select>
                 </div>
             </div>
-            <button type="submit" class="submit-btn">Submit Inquiry</button>
+                 <div class="form-row">
+                <div class="label-text">Hotel category-</div>
+                <div class="checkbox-container">
+                    <label class="checkbox-item"><input type="checkbox"> Boutique hotel</label>
+                    <label class="checkbox-item"><input type="checkbox"> 5-star hotel</label>
+                    <label class="checkbox-item"><input type="checkbox"> 4-star hotel</label>
+                    <label class="checkbox-item"><input type="checkbox"> 3-star hotel</label>
+                    <label class="checkbox-item"><input type="checkbox"> Budget hotel</label>
+                </div>
+            </div>
+            <button type="submit" class="submit-btn" onclick="event.preventDefault(); alert('Quick Inquiry Sent!');">Submit Inquiry</button>
         </form>
     </div>
 </div>
@@ -175,7 +218,7 @@
         <form>
             <div class="form-row"><div class="label-text">Name-</div><input type="text" style="width: 250px;"></div>
             <div class="form-row"><div class="label-text">Country-</div><select class="country-dropdown-class" style="width: 272px;"></select></div>
-            <div class="form-row"><div class="label-text">Email address-</div><input type="email" required style="width: 250px;"></div>
+            <div class="form-row"><div class="label-text">Email address-</div><input type="email" required style="width: 250px;"><span class="validation-text">(required)</span></div>
             <div class="form-row"><div class="label-text">Whatsapp no-</div><input type="text" placeholder="+00 000 000 000" style="width: 250px;"></div>
             <div class="form-row"><div class="label-text">Arrival date-</div><input type="date"></div>
             <div class="form-row"><div class="label-text">Departure date-</div><input type="date"></div>
@@ -183,33 +226,46 @@
                 <div class="pax-group">
                     <select class="fill-60 num-dropdown"></select><span>Adult</span>
                     <select class="fill-60 num-dropdown"></select><span>Children</span>
+                    <select class="fill-60 num-dropdown"></select>
                 </div>
             </div>
             <div class="form-row"><div class="label-text">Hotel category-</div>
                 <div class="checkbox-container">
-                    <label class="checkbox-item"><input type="checkbox"> Boutique</label>
-                    <label class="checkbox-item"><input type="checkbox"> 5-star</label>
-                    <label class="checkbox-item"><input type="checkbox"> 4-star</label>
-                    <label class="checkbox-item"><input type="checkbox"> 3-star</label>
-                    <label class="checkbox-item"><input type="checkbox"> Budget</label>
+                    <label class="checkbox-item"><input type="checkbox"> Boutique hotel</label>
+                    <label class="checkbox-item"><input type="checkbox"> 5-star hotel</label>
+                    <label class="checkbox-item"><input type="checkbox"> 4-star hotel</label>
+                    <label class="checkbox-item"><input type="checkbox"> 3-star hotel</label>
+                    <label class="checkbox-item"><input type="checkbox"> Budget hotel</label>
                 </div>
             </div>
             <div class="form-row"><div class="label-text">No of rooms-</div><select class="fill-60" style="width: 100px;"></select></div>
             <div class="form-row"><div class="label-text">Meal plan-</div>
                 <div class="checkbox-container">
-                    <label class="checkbox-item"><input type="checkbox"> B&B</label>
+                    <label class="checkbox-item"><input type="checkbox"> Bed & breakfast</label>
                     <label class="checkbox-item"><input type="checkbox"> Half board</label>
                     <label class="checkbox-item"><input type="checkbox"> Full board</label>
                 </div>
             </div>
-            <div class="form-row"><div class="label-text">Targeted budget-</div>
+            <div class="form-row"><div class="label-text">Interest-</div>
+                <div class="checkbox-container">
+                    <label class="checkbox-item"><input type="checkbox"> Culture & Heritage</label>
+                    <label class="checkbox-item"><input type="checkbox"> Ancient & Archeology</label>
+                    <label class="checkbox-item"><input type="checkbox"> Adventure</label>
+                    <label class="checkbox-item"><input type="checkbox"> Shopping</label>
+                    <label class="checkbox-item"><input type="checkbox"> Nature</label>
+                    <label class="checkbox-item"><input type="checkbox"> Wildlife</label>
+                    <label class="checkbox-item"><input type="checkbox"> Beach</label>
+                </div>
+            </div>
+            <div class="form-row"><div class="label-text">Targeted package budget-</div>
                 <div class="budget-container">
                     <select style="width: 100%; border: none; background: transparent;">
-                        <option>1$ - 500$</option><option>500$ - 1500$</option><option>1500$ - 2500$</option><option>Above 2500$</option>
+                        <option>1$ - 500$</option><option>500$ - 1500$</option><option>1500$ - 2500$</option><option>2500$ - 4000$</option><option>4000$ - 6000$</option><option>Above 6000$</option>
                     </select>
                 </div>
             </div>
-            <button type="submit" class="submit-btn">Submit Inquiry</button>
+            <div class="form-row"><div class="label-text">Other requirements-</div><textarea rows="4" style="flex: 1;"></textarea></div>
+            <button type="submit" class="submit-btn" onclick="event.preventDefault(); alert('Inquiry Sent!');">Submit Inquiry</button>
         </form>
     </div>
 </div>
@@ -217,13 +273,37 @@
 <div id="payments" class="page-section">
     <div class="content-container">
         <h2>Payment Methods</h2>
-        <div class="payment-choice-box" onclick="togglePay(this)">
-            <div class="payment-choice-header">1. Company Account (Local LKR) <span>▼</span></div>
-            <div class="payment-choice-content"><p>Account: 360 Tours Lanka (Pvt) Ltd<br>Bank: [Bank Name]<br>No: [Acc No]</p></div>
-        </div>
-        <div class="payment-choice-box" onclick="togglePay(this)">
-            <div class="payment-choice-header">2. USD Account (SWIFT) <span>▼</span></div>
-            <div class="payment-choice-content"><p>Bank: [Bank Name]<br>SWIFT: [Code]</p></div>
+        <div class="terms-text">
+            <p style="text-align: center; color: #666; margin-bottom: 30px;">Select a method to see bank details.</p>
+            
+            <div class="payment-choice-box" onclick="togglePay(this)">
+                <div class="payment-choice-header">1. Company Current Account (Local) <span>▼</span></div>
+                <div class="payment-choice-content">
+                    <p><strong>Account Name:</strong> 360 Tours Lanka (Pvt) Ltd<br><strong>Account No:</strong> [Enter No]<br><strong>Bank:</strong> [Enter Bank]</p>
+                </div>
+            </div>
+
+            <div class="payment-choice-box" onclick="togglePay(this)">
+                <div class="payment-choice-header">2. LKR Account with SWIFT Code <span>▼</span></div>
+                <div class="payment-choice-content">
+                    <p><strong>Account Name:</strong> 360 Tours Lanka (Pvt) Ltd<br><strong>Account No:</strong> [Enter LKR No]<br><strong>SWIFT:</strong> [Enter SWIFT]</p>
+                </div>
+            </div>
+
+            <div class="payment-choice-box" onclick="togglePay(this)">
+                <div class="payment-choice-header">3. USD Account with SWIFT Code <span>▼</span></div>
+                <div class="payment-choice-content">
+                    <p><strong>Account Name:</strong> 360 Tours Lanka (Pvt) Ltd<br><strong>Account No:</strong> [Enter USD No]<br><strong>SWIFT:</strong> [Enter SWIFT]</p>
+                </div>
+            </div>
+
+            <div class="payment-choice-box" onclick="togglePay(this)">
+                <div class="payment-choice-header">4. Online Payment Link <span>▼</span></div>
+                <div class="payment-choice-content">
+                    <p>Pay securely via our online gateway.</p>
+                    <a href="#" class="submit-btn" style="text-decoration:none; width:fit-content; margin:10px 0; display:block;">Pay Now</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -231,25 +311,70 @@
 <div id="terms-page" class="page-section">
     <div class="content-container">
         <h2>Terms & Conditions</h2>
-        <p>1. Booking requires 20% deposit.</p>
-        <p>2. Cancellation within 21 days is non-refundable.</p>
+        <div class="terms-text">
+            <h3>1. Booking & Confirmation</h3>
+            <p>Confirmed only after receiving 20% advance payment.</p>
+            <h3>2. Cancellation Policy</h3>
+            <p>21 days or less: 100% cancellation charge.</p>
+        </div>
     </div>
 </div>
 
-<div id="about" class="page-section"><div class="content-container"><h2>About Us</h2><p>Specializing in tailor-made Sri Lankan tours.</p></div></div>
+<div id="contact-page" class="page-section">
+    <div class="form-container">
+        <h2>Contact Us</h2>
+        <div style="display: flex; gap: 30px; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 250px;">
+                <h3 style="color: var(--primary-green);">Our Office</h3>
+                <p><strong>Address:</strong> [Business Address], Sri Lanka</p>
+                <p><strong>WhatsApp:</strong> +94 XX XXX XXXX</p>
+                <p><strong>Email:</strong> info@sltours.com</p>
+            </div>
+            <div style="flex: 1.5; min-width: 300px;">
+                <form>
+                    <div class="form-row"><div class="label-text" style="width:120px;">Name</div><input type="text" style="flex:1;"></div>
+                    <div class="form-row"><div class="label-text" style="width:120px;">Country</div><select class="country-dropdown-class" style="flex:1;"></select></div>
+                    <div class="form-row"><div class="label-text" style="width:120px;">Message</div><textarea rows="5" style="flex:1;"></textarea></div>
+                    <button type="submit" class="submit-btn" style="margin: 10px 0;" onclick="event.preventDefault(); alert('Message Sent!');">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="details-page" class="page-section">
+    <div class="details-wrapper">
+        <span class="back-link" onclick="showPage('packages')">← Back to Tours</span>
+        <div id="details-render"></div>
+    </div>
+</div>
+
+<div id="about" class="page-section"><div class="form-container"><h2>About Us</h2><p>Your Sri Lankan travel partner.</p></div></div>
 
 <footer><p>&copy; 2026 360 Tours Lanka (Pvt) Ltd</p></footer>
 
 <script>
+    function toggleMobileMenu() {
+        document.getElementById('navLinks').classList.toggle('mobile-active');
+    }
+
     const tourData = [
-        { id: 1, title: "Soulful Escapade (03 Days)", price: "$140.00", img: "https://images.unsplash.com/photo-1546708973-b339540b5162?w=800", desc: "Tea country retreat." },
-        { id: 2, title: "Revitalizing Adventure (04 Days)", price: "$190.00", img: "https://images.unsplash.com/photo-1588598142121-0691f2883615?w=800", desc: "Action packed days." },
-        { id: 3, title: "Wildlife Expedition (04 Days)", price: "$210.00", img: "https://images.unsplash.com/photo-1544085311-11a028466b03?w=800", desc: "Safari tours." }
+        { id: 1, title: "Soulful Escapade (03 Days)", price: "$140.00", img: "https://images.unsplash.com/photo-1546708973-b339540b5162?w=800", desc: "Teahouse and hill country tour." },
+        { id: 2, title: "Revitalizing Adventure (04 Days)", price: "$190.00", img: "https://images.unsplash.com/photo-1588598142121-0691f2883615?w=800", desc: "Rafting and adventure." },
+        { id: 3, title: "Ecological Wonders (05 Days)", price: "$250.00", img: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800", desc: "Nature deep dive." },
+        { id: 4, title: "Cultural Triangle (05 Days)", price: "$310.00", img: "https://images.unsplash.com/photo-1580502304784-8985b777da52?w=800", desc: "Sigiriya and heritage." },
+        { id: 5, title: "Ella Highland Retreat (03 Days)", price: "$175.00", img: "https://images.unsplash.com/photo-1542300058-b94b8ab7411b?w=800", desc: "Misty mountains." },
+        { id: 6, title: "Trinco Blue Waters (04 Days)", price: "$230.00", img: "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=800", desc: "Beach and snorkeling." },
+        { id: 7, title: "Colonial Galle (02 Days)", price: "$120.00", img: "https://images.unsplash.com/photo-1620619767323-b95a89183081?w=800", desc: "Galle Fort history." },
+        { id: 8, title: "Ancient Discovery (03 Days)", price: "$165.00", img: "https://images.unsplash.com/photo-1578322436416-249539316045?w=800", desc: "Ruins and wildlife." },
+        { id: 9, title: "Southern Surf (06 Days)", price: "$320.00", img: "https://images.unsplash.com/photo-1590523741491-345ad16ce300?w=800", desc: "Surf and sun." },
+        { id: 10, title: "Wildlife Expedition (04 Days)", price: "$210.00", img: "https://images.unsplash.com/photo-1544085311-11a028466b03?w=800", desc: "Yala Safari." }
     ];
 
     function showPage(id) {
         document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active-section'));
         document.getElementById(id).classList.add('active-section');
+        document.getElementById('navLinks').classList.remove('mobile-active'); // Closes menu after selection
         window.scrollTo(0,0);
     }
 
@@ -259,15 +384,28 @@
         if (!active) el.classList.add('active');
     }
 
+    function viewDetails(id) {
+        const pkg = tourData.find(p => p.id === id);
+        document.getElementById('details-render').innerHTML = `
+            <img src="${pkg.img}" class="details-img">
+            <h2>${pkg.title}</h2>
+            <h3 style="color:var(--primary-green)">Price: ${pkg.price}</h3>
+            <p>${pkg.desc}</p>
+            <button onclick="showPage('inquiry-page')" class="submit-btn">Book Now</button>
+        `;
+        showPage('details-page');
+    }
+
     const grid = document.getElementById('tour-grid');
     tourData.forEach(t => {
-        grid.innerHTML += `<div class="card"><img src="${t.img}"><div class="card-body"><h3>${t.title}</h3><p style="color:var(--accent-gold);">${t.price}</p><span class="explore-link" onclick="showPage('inquiry-page')">Book Now</span></div></div>`;
+        grid.innerHTML += `<div class="card"><img src="${t.img}"><div class="card-body"><h3>${t.title}</h3><p style="color:var(--accent-gold); font-weight:bold;">${t.price}</p><span class="explore-link" onclick="viewDetails(${t.id})">Explore</span></div></div>`;
     });
 
     const selects = document.querySelectorAll('.fill-60');
     selects.forEach(s => { for (let i = 1; i <= 60; i++) { let o = document.createElement('option'); o.value = i; o.textContent = i; s.appendChild(o); } });
 
-    const countries = ["Sri Lanka", "United Kingdom", "United States", "India", "Australia", "Germany", "France", "Japan"]; // Truncated for display, add more as needed
+    const countries = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea (North)", "Korea (South)", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"];
+
     const countryDropdowns = document.querySelectorAll('.country-dropdown-class');
     countryDropdowns.forEach(dropdown => {
         countries.forEach(c => {
