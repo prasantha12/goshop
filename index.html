@@ -42,6 +42,7 @@
         .page-section { display: none; padding-top: 80px; min-height: 100vh; box-sizing: border-box; }
         .active-section { display: block; }
 
+        /* --- FORMS & CONTAINERS --- */
         .form-container, .quick-inquiry-container, .content-container {
             background: white; max-width: 850px; margin: 40px auto;
             padding: 50px; border-radius: 12px;
@@ -54,32 +55,6 @@
             margin-bottom: 40px; color: var(--primary-green); font-weight: 700;
             border-bottom: 2px solid #eee; padding-bottom: 15px;
         }
-
-        .terms-text { line-height: 1.8; color: #444; font-size: 14px; }
-        .terms-text h3 { color: var(--dark-blue); margin-top: 25px; border-left: 4px solid var(--primary-green); padding-left: 10px; }
-
-        .payment-choice-box {
-            border: 1px solid var(--border-gray);
-            border-radius: 8px;
-            margin-bottom: 12px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .payment-choice-box:hover { border-color: var(--primary-green); }
-        .payment-choice-header {
-            padding: 15px 20px;
-            font-weight: 600;
-            display: flex;
-            justify-content: space-between;
-        }
-        .payment-choice-content {
-            display: none;
-            padding: 15px 20px;
-            border-top: 1px dashed var(--border-gray);
-            background: #fdfdfd;
-        }
-        .payment-choice-box.active { border-left: 5px solid var(--primary-green); }
-        .payment-choice-box.active .payment-choice-content { display: block; }
 
         .form-row { display: flex; align-items: center; margin-bottom: 22px; }
         .label-text { width: 220px; font-weight: 600; font-size: 14px; color: #555; }
@@ -101,10 +76,7 @@
         .checkbox-item { display: flex; align-items: center; gap: 6px; font-size: 13px; cursor: pointer; }
         .validation-text { font-size: 12px; margin-left: 10px; color: #7f8c8d; font-style: italic; }
 
-        .budget-container {
-            border: 1px solid var(--border-gray); padding: 15px;
-            width: 220px; border-radius: 5px; background-color: #fcfcfc;
-        }
+        .budget-container { border: 1px solid var(--border-gray); padding: 15px; width: 220px; border-radius: 5px; background-color: #fcfcfc; }
 
         .submit-btn {
             background: var(--primary-green); color: white; padding: 15px 45px;
@@ -113,37 +85,50 @@
             font-weight: 600; text-transform: uppercase;
         }
 
-        /* --- Packages Grid --- */
+        /* --- SLIDER STYLES --- */
+        .slider-container { position: relative; width: 100%; margin-bottom: 25px; }
+        .nav-arrow {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(0,0,0,0.6); color: white; border: none;
+            width: 45px; height: 45px; border-radius: 50%; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: 0.3s; z-index: 10; font-size: 18px;
+        }
+        .nav-arrow:hover { background: var(--primary-green); }
+        .prev-arrow { left: 15px; }
+        .next-arrow { right: 15px; }
+
+        /* --- PACKAGES GRID --- */
         .grid-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1200px; margin: 40px auto; padding: 0 20px; }
         .card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .card img { width: 100%; height: 200px; object-fit: cover; }
         .card-body { padding: 20px; }
-        .explore-link { 
-            color: var(--primary-green); font-weight: bold; cursor: pointer; 
-            float: right; border: 1px solid var(--primary-green); 
-            padding: 5px 15px; border-radius: 20px; transition: 0.3s;
-        }
+        .explore-link { color: var(--primary-green); font-weight: bold; cursor: pointer; float: right; border: 1px solid var(--primary-green); padding: 5px 15px; border-radius: 20px; transition: 0.3s; }
         .explore-link:hover { background: var(--primary-green); color: white; }
 
-        /* --- Details View --- */
+        /* --- DETAILS VIEW --- */
         .details-wrapper { max-width: 900px; margin: 40px auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
-        .details-img { width: 100%; height: 400px; object-fit: cover; border-radius: 10px; margin-bottom: 20px; }
+        .details-img { width: 100%; height: 450px; object-fit: cover; border-radius: 10px; }
         .back-link { cursor: pointer; color: var(--primary-green); font-weight: bold; display: block; margin-bottom: 15px; }
+
+        /* --- PAYMENTS --- */
+        .payment-choice-box { border: 1px solid var(--border-gray); border-radius: 8px; margin-bottom: 12px; cursor: pointer; transition: 0.3s; }
+        .payment-choice-box:hover { border-color: var(--primary-green); }
+        .payment-choice-header { padding: 15px 20px; font-weight: 600; display: flex; justify-content: space-between; }
+        .payment-choice-content { display: none; padding: 15px 20px; border-top: 1px dashed var(--border-gray); background: #fdfdfd; }
+        .payment-choice-box.active { border-left: 5px solid var(--primary-green); }
+        .payment-choice-box.active .payment-choice-content { display: block; }
+
+        .terms-text { line-height: 1.8; color: #444; font-size: 14px; }
+        .terms-text h3 { color: var(--dark-blue); margin-top: 25px; border-left: 4px solid var(--primary-green); padding-left: 10px; }
 
         footer { background: var(--dark-blue); color: white; text-align: center; padding: 30px; font-size: 13px; }
 
         @media (max-width: 900px) { 
             .menu-toggle { display: block; }
-            .nav-links { 
-                display: none; flex-direction: column; position: absolute; top: 60px; right: 0; 
-                background: white; width: 100%; text-align: center; box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-                padding: 20px 0; gap: 15px;
-            }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 60px; right: 0; background: white; width: 100%; text-align: center; box-shadow: 0 5px 10px rgba(0,0,0,0.1); padding: 20px 0; gap: 15px; }
             .nav-links.mobile-active { display: flex; }
             .grid-container { grid-template-columns: 1fr 1fr; } 
-        }
-        @media (max-width: 600px) { 
-            .grid-container { grid-template-columns: 1fr; } 
             .form-row { flex-direction: column; align-items: flex-start; }
             .label-text { margin-bottom: 5px; width: 100%; }
         }
@@ -187,8 +172,7 @@
                     <select class="fill-60 num-dropdown"></select>
                 </div>
             </div>
-                 <div class="form-row">
-                <div class="label-text">Hotel category-</div>
+            <div class="form-row"><div class="label-text">Hotel category-</div>
                 <div class="checkbox-container">
                     <label class="checkbox-item"><input type="checkbox"> Boutique hotel</label>
                     <label class="checkbox-item"><input type="checkbox"> 5-star hotel</label>
@@ -221,7 +205,6 @@
                 <div class="pax-group">
                     <select class="fill-60 num-dropdown"></select><span>Adult</span>
                     <select class="fill-60 num-dropdown"></select><span>Children</span>
-                    <select class="fill-60 num-dropdown"></select>
                 </div>
             </div>
             <div class="form-row"><div class="label-text">Hotel category-</div>
@@ -270,34 +253,21 @@
         <h2>Payment Methods</h2>
         <div class="terms-text">
             <p style="text-align: center; color: #666; margin-bottom: 30px;">Select a method to see bank details.</p>
-            
             <div class="payment-choice-box" onclick="togglePay(this)">
                 <div class="payment-choice-header">1. Company Current Account (Local) <span>▼</span></div>
-                <div class="payment-choice-content">
-                    <p><strong>Account Name:</strong> 360 Tours Lanka (Pvt) Ltd<br><strong>Account No:</strong> [Enter No]<br><strong>Bank:</strong> [Enter Bank]</p>
-                </div>
+                <div class="payment-choice-content"><p><strong>Account Name:</strong> 360 Tours Lanka (Pvt) Ltd<br><strong>Account No:</strong> [Enter No]<br><strong>Bank:</strong> [Enter Bank]</p></div>
             </div>
-
             <div class="payment-choice-box" onclick="togglePay(this)">
                 <div class="payment-choice-header">2. LKR Account with SWIFT Code <span>▼</span></div>
-                <div class="payment-choice-content">
-                    <p><strong>Account Name:</strong> 360 Tours Lanka (Pvt) Ltd<br><strong>Account No:</strong> [Enter LKR No]<br><strong>SWIFT:</strong> [Enter SWIFT]</p>
-                </div>
+                <div class="payment-choice-content"><p><strong>Account Name:</strong> 360 Tours Lanka (Pvt) Ltd<br><strong>Account No:</strong> [Enter LKR No]<br><strong>SWIFT:</strong> [Enter SWIFT]</p></div>
             </div>
-
             <div class="payment-choice-box" onclick="togglePay(this)">
                 <div class="payment-choice-header">3. USD Account with SWIFT Code <span>▼</span></div>
-                <div class="payment-choice-content">
-                    <p><strong>Account Name:</strong> 360 Tours Lanka (Pvt) Ltd<br><strong>Account No:</strong> [Enter USD No]<br><strong>SWIFT:</strong> [Enter SWIFT]</p>
-                </div>
+                <div class="payment-choice-content"><p><strong>Account Name:</strong> 360 Tours Lanka (Pvt) Ltd<br><strong>Account No:</strong> [Enter USD No]<br><strong>SWIFT:</strong> [Enter SWIFT]</p></div>
             </div>
-
             <div class="payment-choice-box" onclick="togglePay(this)">
                 <div class="payment-choice-header">4. Online Payment Link <span>▼</span></div>
-                <div class="payment-choice-content">
-                    <p>Pay securely via our online gateway.</p>
-                    <a href="#" class="submit-btn" style="text-decoration:none; width:fit-content; margin:10px 0; display:block;">Pay Now</a>
-                </div>
+                <div class="payment-choice-content"><p>Pay securely via our online gateway.</p><a href="#" class="submit-btn" style="text-decoration:none; width:fit-content; margin:10px 0; display:block;">Pay Now</a></div>
             </div>
         </div>
     </div>
@@ -307,10 +277,8 @@
     <div class="content-container">
         <h2>Terms & Conditions</h2>
         <div class="terms-text">
-            <h3>1. Booking & Confirmation</h3>
-            <p>Confirmed only after receiving 20% advance payment.</p>
-            <h3>2. Cancellation Policy</h3>
-            <p>21 days or less: 100% cancellation charge.</p>
+            <h3>1. Booking & Confirmation</h3><p>Confirmed only after receiving 20% advance payment.</p>
+            <h3>2. Cancellation Policy</h3><p>21 days or less: 100% cancellation charge.</p>
         </div>
     </div>
 </div>
@@ -349,68 +317,66 @@
 <footer><p>&copy; 2026 360 Tours Lanka (Pvt) Ltd</p></footer>
 
 <script>
-    function toggleMobileMenu() {
-        document.getElementById('navLinks').classList.toggle('mobile-active');
-    }
+    let activeImages = [];
+    let currentImgIndex = 0;
 
-    // UPDATED tourData with local image paths
-    const tourData = [
-        { id: 1, title: "Soulful Escapade (03 Days)", price: "$140.00", img: "images/tour1.jpg",desc: "Teahouse and hill country tour." },
-        { id: 2, title: "Revitalizing Adventure (04 Days)", price: "$190.00", img: "images/tour2.jpg", desc: "Rafting and adventure." },
-        { id: 3, title: "Ecological Wonders (05 Days)", price: "$250.00", img: "images/tour3.jpg", desc: "Nature deep dive." },
-        { id: 4, title: "Cultural Triangle (05 Days)", price: "$310.00", img: "images/tour4.jpg", desc: "Sigiriya and heritage." },
-        { id: 5, title: "Ella Highland Retreat (03 Days)", price: "$175.00", img: "images/tour5.jpg", desc: "Misty mountains." },
-        { id: 6, title: "Trinco Blue Waters (04 Days)", price: "$230.00", img: "images/tour6.jpg", desc: "Beach and snorkeling." },
-        { id: 7, title: "Colonial Galle (02 Days)", price: "$120.00", img: "images/tour7.jpg", desc: "Galle Fort history." },
-        { id: 8, title: "Ancient Discovery (03 Days)", price: "$165.00", img: "images/tour8.jpg", desc: "Ruins and wildlife." },
-        { id: 9, title: "Southern Surf (06 Days)", price: "$320.00", img: "images/tour9.jpg", desc: "Surf and sun." },
-        { id: 10, title: "Wildlife Expedition (04 Days)", price: "$210.00", img: "images/tour10.jpg", desc: "Yala Safari." }
-    ];
-
+    function toggleMobileMenu() { document.getElementById('navLinks').classList.toggle('mobile-active'); }
     function showPage(id) {
         document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active-section'));
         document.getElementById(id).classList.add('active-section');
         document.getElementById('navLinks').classList.remove('mobile-active');
         window.scrollTo(0,0);
     }
-
     function togglePay(el) {
         const active = el.classList.contains('active');
         document.querySelectorAll('.payment-choice-box').forEach(b => b.classList.remove('active'));
         if (!active) el.classList.add('active');
     }
 
+    const tourData = [
+        { id: 1, title: "Soulful Escapade (03 Days)", price: "$140.00", img: "images/tour1.jpg", images: ["images/tour1_1.jpg", "images/tour1_2.jpg", "images/tour1_3.jpg", "images/tour1_4.jpg", "images/tour1_5.jpg"], desc: "Teahouse and hill country tour." },
+        { id: 2, title: "Revitalizing Adventure (04 Days)", price: "$190.00", img: "images/tour2.jpg", images: ["images/tour2_1.jpg", "images/tour2_2.jpg", "images/tour2_3.jpg", "images/tour2_4.jpg", "images/tour2_5.jpg"], desc: "Rafting and adventure." },
+        { id: 3, title: "Ecological Wonders (05 Days)", price: "$250.00", img: "images/tour3.jpg", images: ["images/tour3_1.jpg", "images/tour3_2.jpg", "images/tour3_3.jpg", "images/tour3_4.jpg", "images/tour3_5.jpg"], desc: "Nature deep dive." },
+        { id: 4, title: "Cultural Triangle (05 Days)", price: "$310.00", img: "images/tour4.jpg", images: ["images/tour4_1.jpg", "images/tour4_2.jpg", "images/tour4_3.jpg", "images/tour4_4.jpg", "images/tour4_5.jpg"], desc: "Sigiriya and heritage." },
+        { id: 5, title: "Ella Highland Retreat (03 Days)", price: "$175.00", img: "images/tour5.jpg", images: ["images/tour5_1.jpg", "images/tour5_2.jpg", "images/tour5_3.jpg", "images/tour5_4.jpg", "images/tour5_5.jpg"], desc: "Misty mountains." },
+        { id: 6, title: "Trinco Blue Waters (04 Days)", price: "$230.00", img: "images/tour6.jpg", images: ["images/tour6_1.jpg", "images/tour6_2.jpg", "images/tour6_3.jpg", "images/tour6_4.jpg", "images/tour6_5.jpg"], desc: "Beach and snorkeling." },
+        { id: 7, title: "Colonial Galle (02 Days)", price: "$120.00", img: "images/tour7.jpg", images: ["images/tour7_1.jpg", "images/tour7_2.jpg", "images/tour7_3.jpg", "images/tour7_4.jpg", "images/tour7_5.jpg"], desc: "Galle Fort history." },
+        { id: 8, title: "Ancient Discovery (03 Days)", price: "$165.00", img: "images/tour8.jpg", images: ["images/tour8_1.jpg", "images/tour8_2.jpg", "images/tour8_3.jpg", "images/tour8_4.jpg", "images/tour8_5.jpg"], desc: "Ruins and wildlife." },
+        { id: 9, title: "Southern Surf (06 Days)", price: "$320.00", img: "images/tour9.jpg", images: ["images/tour9_1.jpg", "images/tour9_2.jpg", "images/tour9_3.jpg", "images/tour9_4.jpg", "images/tour9_5.jpg"], desc: "Surf and sun." },
+        { id: 10, title: "Wildlife Expedition (04 Days)", price: "$210.00", img: "images/tour10.jpg", images: ["images/tour10_1.jpg", "images/tour10_2.jpg", "images/tour10_3.jpg", "images/tour10_4.jpg", "images/tour10_5.jpg"], desc: "Yala Safari." }
+    ];
+
     function viewDetails(id) {
         const pkg = tourData.find(p => p.id === id);
+        activeImages = pkg.images;
+        currentImgIndex = 0;
         document.getElementById('details-render').innerHTML = `
-            <img src="${pkg.img}" class="details-img">
-            <h2>${pkg.title}</h2>
-            <h3 style="color:var(--primary-green)">Price: ${pkg.price}</h3>
-            <p>${pkg.desc}</p>
-            <button onclick="showPage('inquiry-page')" class="submit-btn">Book Now</button>
-        `;
+            <div class="slider-container">
+                <button class="nav-arrow prev-arrow" onclick="changeImg(-1)"><i class="fas fa-chevron-left"></i></button>
+                <img src="${activeImages[0]}" id="main-slider-img" class="details-img">
+                <button class="nav-arrow next-arrow" onclick="changeImg(1)"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <h2>${pkg.title}</h2><h3 style="color:var(--primary-green)">Price: ${pkg.price}</h3><p>${pkg.desc}</p>
+            <button onclick="showPage('inquiry-page')" class="submit-btn">Book Now</button>`;
         showPage('details-page');
     }
 
+    function changeImg(step) {
+        currentImgIndex += step;
+        if (currentImgIndex >= activeImages.length) currentImgIndex = 0;
+        if (currentImgIndex < 0) currentImgIndex = activeImages.length - 1;
+        document.getElementById('main-slider-img').src = activeImages[currentImgIndex];
+    }
+
     const grid = document.getElementById('tour-grid');
-    tourData.forEach(t => {
-        grid.innerHTML += `<div class="card"><img src="${t.img}"><div class="card-body"><h3>${t.title}</h3><p style="color:var(--accent-gold); font-weight:bold;">${t.price}</p><span class="explore-link" onclick="viewDetails(${t.id})">Explore</span></div></div>`;
-    });
+    tourData.forEach(t => { grid.innerHTML += `<div class="card"><img src="${t.img}"><div class="card-body"><h3>${t.title}</h3><p style="color:var(--accent-gold); font-weight:bold;">${t.price}</p><span class="explore-link" onclick="viewDetails(${t.id})">Explore</span></div></div>`; });
 
     const selects = document.querySelectorAll('.fill-60');
     selects.forEach(s => { for (let i = 1; i <= 60; i++) { let o = document.createElement('option'); o.value = i; o.textContent = i; s.appendChild(o); } });
 
     const countries = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea (North)", "Korea (South)", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"];
-
     const countryDropdowns = document.querySelectorAll('.country-dropdown-class');
-    countryDropdowns.forEach(dropdown => {
-        countries.forEach(c => {
-            let o = document.createElement('option');
-            o.value = o.textContent = c;
-            dropdown.appendChild(o);
-        });
-    });
+    countryDropdowns.forEach(dropdown => { countries.forEach(c => { let o = document.createElement('option'); o.value = o.textContent = c; dropdown.appendChild(o); }); });
 </script>
-
 </body>
 </html>
