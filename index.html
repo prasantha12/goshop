@@ -37,11 +37,14 @@
         .nav-links a { text-decoration: none; color: var(--dark-blue); font-weight: 600; font-size: 13px; cursor: pointer; transition: 0.3s; }
         .nav-links a:hover { color: var(--primary-green); }
 
+        /* HAMBURGER TOGGLE STYLE */
         .menu-toggle { display: none; font-size: 24px; cursor: pointer; color: var(--dark-blue); }
 
+        /* --- Page Management --- */
         .page-section { display: none; padding-top: 80px; min-height: 100vh; box-sizing: border-box; }
         .active-section { display: block; }
 
+        /* --- FORM & CONTENT STYLES --- */
         .form-container, .quick-inquiry-container, .content-container {
             background: white; max-width: 850px; margin: 40px auto;
             padding: 50px; border-radius: 12px;
@@ -58,6 +61,7 @@
         .terms-text { line-height: 1.8; color: #444; font-size: 14px; }
         .terms-text h3 { color: var(--dark-blue); margin-top: 25px; border-left: 4px solid var(--primary-green); padding-left: 10px; }
 
+        /* --- INTERACTIVE PAYMENT STYLES --- */
         .payment-choice-box {
             border: 1px solid var(--border-gray);
             border-radius: 8px;
@@ -132,6 +136,7 @@
 
         footer { background: var(--dark-blue); color: white; text-align: center; padding: 30px; font-size: 13px; }
 
+        /* --- UPDATED MOBILE RESPONSIVENESS WITH MENU --- */
         @media (max-width: 900px) { 
             .menu-toggle { display: block; }
             .nav-links { 
@@ -166,7 +171,7 @@
 </nav>
 
 <div id="home" class="page-section active-section">
-    <div style="height: 70vh; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/hero.jpg'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white;">
+    <div style="height: 70vh; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1546708973-b339540b5162?w=1200'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white;">
         <h1>Explore Sri Lanka</h1>
         <p>Premium travel experiences across the teardrop isle.</p>
         <button onclick="showPage('packages')" style="background: var(--primary-green); color: white; padding: 15px 35px; border: none; border-radius: 50px; font-weight: bold; cursor: pointer;">View All Tours</button>
@@ -353,26 +358,23 @@
         document.getElementById('navLinks').classList.toggle('mobile-active');
     }
 
-    // UPDATED tourData with local image paths
     const tourData = [
-       { id: 1, title: "Soulful Escapade (03 Days)", price: "$140.00", 
-          images: ["images/tour1.jpg", "images/tour1_2.jpg", "images/tour1_3.jpg", "images/tour1_4.jpg", "images/tour1_5.jpg"], 
-          desc: "Teahouse and hill country tour." },
-        { id: 2, title: "Revitalizing Adventure (04 Days)", price: "$190.00", img: "images/tour2.jpg", desc: "Rafting and adventure." },
-        { id: 3, title: "Ecological Wonders (05 Days)", price: "$250.00", img: "images/tour3.jpg", desc: "Nature deep dive." },
-        { id: 4, title: "Cultural Triangle (05 Days)", price: "$310.00", img: "images/tour4.jpg", desc: "Sigiriya and heritage." },
-        { id: 5, title: "Ella Highland Retreat (03 Days)", price: "$175.00", img: "images/tour5.jpg", desc: "Misty mountains." },
-        { id: 6, title: "Trinco Blue Waters (04 Days)", price: "$230.00", img: "images/tour6.jpg", desc: "Beach and snorkeling." },
-        { id: 7, title: "Colonial Galle (02 Days)", price: "$120.00", img: "images/tour7.jpg", desc: "Galle Fort history." },
-        { id: 8, title: "Ancient Discovery (03 Days)", price: "$165.00", img: "images/tour8.jpg", desc: "Ruins and wildlife." },
-        { id: 9, title: "Southern Surf (06 Days)", price: "$320.00", img: "images/tour9.jpg", desc: "Surf and sun." },
-        { id: 10, title: "Wildlife Expedition (04 Days)", price: "$210.00", img: "images/tour10.jpg", desc: "Yala Safari." }
+        { id: 1, title: "Soulful Escapade (03 Days)", price: "$140.00", img: "https://images.unsplash.com/photo-1546708973-b339540b5162?w=800", desc: "Teahouse and hill country tour." },
+        { id: 2, title: "Revitalizing Adventure (04 Days)", price: "$190.00", img: "https://images.unsplash.com/photo-1588598142121-0691f2883615?w=800", desc: "Rafting and adventure." },
+        { id: 3, title: "Ecological Wonders (05 Days)", price: "$250.00", img: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800", desc: "Nature deep dive." },
+        { id: 4, title: "Cultural Triangle (05 Days)", price: "$310.00", img: "https://images.unsplash.com/photo-1580502304784-8985b777da52?w=800", desc: "Sigiriya and heritage." },
+        { id: 5, title: "Ella Highland Retreat (03 Days)", price: "$175.00", img: "https://images.unsplash.com/photo-1542300058-b94b8ab7411b?w=800", desc: "Misty mountains." },
+        { id: 6, title: "Trinco Blue Waters (04 Days)", price: "$230.00", img: "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=800", desc: "Beach and snorkeling." },
+        { id: 7, title: "Colonial Galle (02 Days)", price: "$120.00", img: "https://images.unsplash.com/photo-1620619767323-b95a89183081?w=800", desc: "Galle Fort history." },
+        { id: 8, title: "Ancient Discovery (03 Days)", price: "$165.00", img: "https://images.unsplash.com/photo-1578322436416-249539316045?w=800", desc: "Ruins and wildlife." },
+        { id: 9, title: "Southern Surf (06 Days)", price: "$320.00", img: "https://images.unsplash.com/photo-1590523741491-345ad16ce300?w=800", desc: "Surf and sun." },
+        { id: 10, title: "Wildlife Expedition (04 Days)", price: "$210.00", img: "https://images.unsplash.com/photo-1544085311-11a028466b03?w=800", desc: "Yala Safari." }
     ];
 
     function showPage(id) {
         document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active-section'));
         document.getElementById(id).classList.add('active-section');
-        document.getElementById('navLinks').classList.remove('mobile-active');
+        document.getElementById('navLinks').classList.remove('mobile-active'); // Closes menu after selection
         window.scrollTo(0,0);
     }
 
