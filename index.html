@@ -62,19 +62,74 @@
         /* --- HERO --- */
         .hero {
             height: 70vh;
-            background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('images/hero.jpg');
-            background-size: cover; background-position: center;
+            position: relative;
+            overflow: hidden;
             display: flex; flex-direction: column;
             justify-content: center; align-items: center;
             text-align: center; color: white;
             padding: 20px;
         }
+
+        /* Hero image slides */
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            z-index: 0;
+        }
+        .hero-slide::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.45);
+        }
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        /* Hero content sits above slides */
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         .hero h1 { font-size: clamp(28px, 8vw, 52px); margin: 0 0 10px; }
         .hero p { font-size: clamp(14px, 3vw, 18px); margin: 0 0 25px; }
         .hero-btn {
             background: var(--primary-green); color: white;
             padding: 14px 32px; border: none; border-radius: 50px;
             font-weight: bold; cursor: pointer; font-size: clamp(13px, 3vw, 16px);
+        }
+
+        /* Hero indicator dots */
+        .hero-dots {
+            position: absolute;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            gap: 8px;
+        }
+        .hero-dot {
+            height: 8px; width: 8px;
+            background: rgba(255,255,255,0.6);
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+            padding: 0;
+            transition: background 0.3s, width 0.3s;
+        }
+        .hero-dot.active {
+            background: var(--primary-green);
+            width: 22px;
+            border-radius: 10px;
         }
 
         /* --- GALLERY SLIDER --- */
@@ -286,10 +341,30 @@
 
 <!-- HOME -->
 <div id="home" class="page-section active-section">
+
+    <!-- HERO with auto-navigating image slider -->
     <div class="hero">
-        <h1>Explore Sri Lanka</h1>
-        <p>Premium travel experiences across the teardrop isle.</p>
-        <button class="hero-btn" onclick="showPage('packages')">View All Tours</button>
+
+        <!-- 4 background image slides -->
+        <div class="hero-slide active" style="background-image: url('images/hero.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/hero2.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/hero3.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/hero4.jpg');"></div>
+
+        <!-- Hero text & button (unchanged) -->
+        <div class="hero-content">
+            <h1>Explore Sri Lanka</h1>
+            <p>Premium travel experiences across the teardrop isle.</p>
+            <button class="hero-btn" onclick="showPage('packages')">View All Tours</button>
+        </div>
+
+        <!-- Slide indicator dots -->
+        <div class="hero-dots">
+            <button class="hero-dot active" onclick="goToHeroSlide(0)"></button>
+            <button class="hero-dot" onclick="goToHeroSlide(1)"></button>
+            <button class="hero-dot" onclick="goToHeroSlide(2)"></button>
+            <button class="hero-dot" onclick="goToHeroSlide(3)"></button>
+        </div>
     </div>
 
     <div class="quick-inquiry-container">
@@ -629,6 +704,34 @@
             nav.classList.remove('mobile-active');
         }
     });
+
+    // =============================================
+    // HERO AUTO-SLIDER
+    // =============================================
+    let heroIndex = 0;
+    const heroSlides = document.querySelectorAll('.hero-slide');
+    const heroDots = document.querySelectorAll('.hero-dot');
+    let heroTimer;
+
+    function goToHeroSlide(index) {
+        heroSlides[heroIndex].classList.remove('active');
+        heroDots[heroIndex].classList.remove('active');
+        heroIndex = index;
+        heroSlides[heroIndex].classList.add('active');
+        heroDots[heroIndex].classList.add('active');
+        // Reset timer on manual dot click
+        clearInterval(heroTimer);
+        heroTimer = setInterval(nextHeroSlide, 5000);
+    }
+
+    function nextHeroSlide() {
+        goToHeroSlide((heroIndex + 1) % heroSlides.length);
+        // goToHeroSlide already resets the timer, so we avoid double intervals
+        // by using clearInterval + setInterval inside goToHeroSlide
+    }
+
+    // Start auto-play every 5 seconds
+    heroTimer = setInterval(nextHeroSlide, 5000);
 </script>
 
 </body>
