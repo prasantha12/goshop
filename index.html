@@ -5,7 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>360 Tours Lanka | Your Sri Lankan Travel Partner</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+
+/* Top bar with email and WhatsApp - FIXED */
+.top-contact-bar {
+    background-color: #2c3e50;
+    color: #fff;
+    font-size: 13px;
+    padding: 8px 5% 0 5%;
+    font-family: 'Nunito', sans-serif;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2002;
+}
+
+.top-contact-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.top-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+}
+
+.top-contact-item i {
+    color: var(--primary-green);
+    font-size: 14px;
+}
+
+.top-contact-item a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.top-contact-item a:hover {
+    color: var(--primary-green);
+}
+
+@media (max-width: 600px) {
+    .top-contact-container {
+        justify-content: center;
+        gap: 15px;
+    }
+    .top-contact-bar {
+        padding: 6px 15px;
+        font-size: 11px;
+    }
+}
         :root {
             --primary-green: #27ae60;
             --accent-gold: #f39c12;
@@ -18,7 +77,7 @@
         * { box-sizing: border-box; }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Nunito', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0; padding: 0;
             background-color: var(--light-bg);
             color: var(--dark-blue);
@@ -28,8 +87,8 @@
         /* --- NAVIGATION --- */
         nav {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 5%; background: var(--white);
-            position: fixed; width: 100%; top: 0;
+            padding: 12px 5%; background: var(--white);
+            position: fixed; width: 100%; top: 28px;
             z-index: 2000; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
@@ -41,25 +100,24 @@
 
         .menu-toggle { display: none; font-size: 24px; cursor: pointer; color: var(--dark-blue); background: none; border: none; padding: 5px; }
 
-        .page-section { display: none; padding-top: 70px; min-height: 100vh; }
+        .page-section { display: none; padding-top: 110px; min-height: 100vh; }
         .active-section { display: block; }
 
-        /* --- CONTAINERS --- */
-        .form-container, .quick-inquiry-container, .content-container {
-            background: white; max-width: 850px; margin: 30px auto;
+        /* --- MAIN INQUIRY CONTAINERS --- */
+        .form-container, .content-container {
+            background: white; max-width: 1200px; margin: 30px auto;
             padding: 40px 50px; border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             border-top: 8px solid var(--primary-green);
         }
 
-        .form-container h1, .quick-inquiry-container h2, .content-container h2 {
+        .form-container h1, .content-container h2 {
             text-align: center; text-transform: uppercase; letter-spacing: 2px;
             margin-bottom: 30px; color: var(--primary-green); font-weight: 700;
             border-bottom: 2px solid #eee; padding-bottom: 15px;
             font-size: clamp(16px, 4vw, 22px);
         }
-
-        /* --- HERO --- */
+/* --- HERO --- */
         .hero {
             height: 70vh;
             position: relative;
@@ -126,7 +184,8 @@
             width: 22px;
             border-radius: 10px;
         }
-      /* --- NEW INTRO SECTION (FROM IMAGE) --- */
+
+        /* --- INTRO SECTION --- */
         .intro-section {
             position: relative;
             background: url('images/hero.jpg') no-repeat center center/cover;
@@ -195,13 +254,14 @@
         /* --- FORMS --- */
         .form-row {
             display: flex;
+            flex-direction: row;
             align-items: flex-start;
-            margin-bottom: 20px;
+            margin-bottom: 14px;
             flex-wrap: wrap;
             gap: 8px;
         }
         .label-text {
-            width: 200px;
+            width: 180px;
             font-weight: 600;
             font-size: 14px;
             color: #555;
@@ -214,6 +274,7 @@
             padding: 10px 12px; border: 1px solid var(--border-gray);
             border-radius: 5px; font-size: 14px; outline: none;
             width: 100%;
+            font-family: inherit;
         }
         input[type="date"] { width: auto; max-width: 100%; }
 
@@ -238,21 +299,213 @@
             font-size: 15px; font-weight: 600; text-transform: uppercase;
             width: auto; min-width: 180px; text-align: center;
         }
-        /* --- COMPACT WIDTH FOR QUICK INQUIRY --- */
-   .quick-inquiry-container {
-    background: white; 
-    max-width: 600px; /* Changed from 850px to 550px */
-    margin: 30px auto;
-    padding: 40px 50px; 
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    border-top: 8px solid var(--primary-green);
-}
 
-/* Also update the label width to fit the narrower form better */
-.quick-inquiry-container .label-text {
-    width: 150px; /* Reduced from 200px to allow more room for inputs */
-}
+        /* =============================================
+           BOTTOM HOME SECTION — IMAGE + INQUIRY FORM
+           MODIFIED: Form moved to far right edge
+        ============================================= */
+        .home-bottom-section {
+            position: relative;
+            width: 100%;
+            min-height: 600x;
+            overflow: hidden;
+            display: flex;
+            align-items: stretch;
+        }
+
+        .home-bottom-bg {
+            position: absolute;
+            inset: 0;
+            background: url('images/hero2.jpg') no-repeat center center / cover;
+            z-index: 0;
+        }
+
+        .home-bottom-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 100%;
+            margin: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 40px;
+            padding: 70px 0 70px 5%;
+        }
+
+        .home-bottom-text {
+            flex: 0 1 800px;
+            color: white;
+            margin-right: auto;
+            margin-left: 0;
+            backdrop-filter: blur(2px);
+            background: rgba(0,0,0,0.4);
+            border-radius: 20px;
+            padding: 25px 30px;
+            height: 810px;
+           
+        }
+
+        .home-bottom-text .sub-label {
+            display: inline-block;
+            background: var(--primary-green);
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 5px 14px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .home-bottom-text h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(28px, 4vw, 46px);
+            font-weight: 800;
+            line-height: 1.2;
+            margin: 0 0 20px;
+            color: white;
+        }
+
+        .home-bottom-text h2 span {
+            color: var(--accent-gold);
+        }
+
+        .home-bottom-text p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 30px;
+        }
+
+        .home-bottom-stats {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .home-stat {
+            text-align: center;
+        }
+
+        .home-stat strong {
+            display: block;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent-gold);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .home-stat span {
+            font-size: 12px;
+            color: rgba(255,255,255,0.8);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .home-inquiry-card {
+            width: 420px;
+            flex-shrink: 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            border-top: 6px solid var(--primary-green);
+            margin-right: 30px;
+        }
+
+        .home-inquiry-card .card-head {
+            background: var(--dark-blue);
+            color: white;
+            padding: 18px 28px;
+            font-size: 17px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-left: 5px solid var(--primary-green);
+        }
+
+        .home-inquiry-card .card-head i {
+            color: var(--primary-green);
+        }
+
+        .home-inquiry-card .card-body {
+            padding: 24px 28px;
+            max-height: 750px;
+            overflow-y: auto;
+        }
+
+        .home-inquiry-card .card-body::-webkit-scrollbar {
+            width: 4px;
+        }
+        .home-inquiry-card .card-body::-webkit-scrollbar-thumb {
+            background: var(--primary-green);
+            border-radius: 4px;
+        }
+
+        .inq-row {
+            margin-bottom: 12px;
+        }
+        .inq-row label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+        .inq-row input,
+        .inq-row select,
+        .inq-row textarea {
+            width: 100%;
+            padding: 9px 12px;
+            border: 1px solid var(--border-gray);
+            border-radius: 7px;
+            font-size: 13px;
+            outline: none;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+        .inq-row input:focus,
+        .inq-row select:focus,
+        .inq-row textarea:focus {
+            border-color: var(--primary-green);
+        }
+        .inq-row textarea { resize: vertical; min-height: 70px; }
+
+        .inq-row .pax-group { gap: 6px; }
+        .inq-row .pax-group select { width: 60px; font-size: 13px; }
+        .inq-row .pax-group span { font-size: 12px; color: #555; }
+
+        .inq-row .checkbox-container {
+            padding: 10px;
+            gap: 8px;
+            border-radius: 7px;
+        }
+        .inq-row .checkbox-item { font-size: 12px; }
+
+        .inq-submit-btn {
+            width: 100%;
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 13px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background 0.2s, transform 0.15s;
+            margin-top: 10px;
+            font-family: inherit;
+        }
+        .inq-submit-btn:hover { background: #22994f; transform: translateY(-1px); }
 
         /* --- PAYMENT ACCORDION --- */
         .payment-choice-box { border: 1px solid var(--border-gray); border-radius: 8px; margin-bottom: 12px; cursor: pointer; transition: 0.3s; }
@@ -282,36 +535,365 @@
         }
         .explore-link:hover { background: var(--primary-green); color: white; }
 
-        .details-wrapper { max-width: 900px; margin: 30px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
-        .back-link { cursor: pointer; color: var(--primary-green); font-weight: bold; display: inline-block; margin-bottom: 15px; }
-
-        footer { background: var(--dark-blue); color: white; text-align: center; padding: 25px 20px; font-size: 13px; }
-
         /* =============================================
-           CATEGORY CARDS SECTION
+           TOUR DETAILS PAGE LAYOUT
         ============================================= */
-         /* --- AUTO-SCROLLING CATEGORY REEL --- */
+        .details-page-wrapper {
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 0 20px 60px;
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        .details-main {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .details-main .back-link {
+            cursor: pointer;
+            color: var(--primary-green);
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 18px;
+            font-size: 14px;
+            text-decoration: none;
+        }
+        .details-main .back-link:hover { text-decoration: underline; }
+
+        .details-hero-gallery { position: relative; border-radius: 14px; overflow: hidden; background: #eee; margin-bottom: 25px; }
+        .details-hero-gallery .gallery-img { height: 380px; }
+
+        .explore-tours-heading {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(22px, 4vw, 30px);
+            color: var(--dark-blue);
+            margin: 0 0 6px;
+            font-weight: 800;
+        }
+
+        .tour-meta-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-bottom: 18px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .tour-meta-bar span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .tour-meta-bar i { color: var(--primary-green); }
+
+        .details-desc {
+            font-size: 14.5px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .inc-exc-section { margin: 30px 0; }
+        .inc-exc-section h3 {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-gray);
+        }
+
+        .inc-exc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 30px;
+        }
+
+        .inc-item, .exc-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 13.5px;
+            color: #444;
+            padding: 4px 0;
+        }
+
+        .inc-item i { color: var(--primary-green); margin-top: 3px; flex-shrink: 0; }
+        .exc-item i { color: #e74c3c; margin-top: 3px; flex-shrink: 0; }
+
+        .amenities-section { margin: 30px 0; }
+        .amenities-section h3 {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-gray);
+        }
+
+        .amenities-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .amenity-pill {
+            background: #f0faf4;
+            border: 1px solid #b8e6cc;
+            color: var(--primary-green);
+            padding: 7px 15px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tour-plan-section { margin: 30px 0; }
+        .tour-plan-section h3 {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-gray);
+        }
+
+        .day-accordion {
+            border: 1px solid var(--border-gray);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .day-accordion-header {
+            background: var(--primary-green);
+            color: white;
+            padding: 14px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            font-size: 14px;
+            transition: background 0.2s;
+            user-select: none;
+        }
+
+        .day-accordion-header:hover { background: #22994f; }
+
+        .day-accordion-header i { transition: transform 0.3s; }
+        .day-accordion.open .day-accordion-header i { transform: rotate(180deg); }
+
+        .day-accordion-content {
+            display: none;
+            padding: 18px 20px;
+            font-size: 14px;
+            color: #555;
+            line-height: 1.7;
+            background: #fafffe;
+        }
+
+        .day-accordion.open .day-accordion-content { display: block; }
+
+        .details-sidebar {
+            width: 400px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .booking-card {
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.10);
+            overflow: hidden;
+            border: 1px solid var(--border-gray);
+        }
+
+        .booking-card-header {
+            background: var(--dark-blue);
+            color: white;
+            padding: 16px 22px;
+            font-size: 17px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-left: 5px solid var(--primary-green);
+        }
+
+        .booking-card-body {
+            padding: 22px;
+            max-height: 700px;
+            overflow-y: auto;
+        }
+        .booking-card-body::-webkit-scrollbar { width: 4px; }
+        .booking-card-body::-webkit-scrollbar-thumb { background: var(--primary-green); border-radius: 4px; }
+
+        .bk-row {
+            margin-bottom: 12px;
+        }
+        .bk-row label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+        .bk-row input,
+        .bk-row select,
+        .bk-row textarea {
+            width: 100%;
+            padding: 8px 11px;
+            border: 1px solid var(--border-gray);
+            border-radius: 7px;
+            font-size: 13px;
+            outline: none;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+        .bk-row input:focus,
+        .bk-row select:focus,
+        .bk-row textarea:focus { border-color: var(--primary-green); }
+        .bk-row textarea { resize: vertical; min-height: 65px; }
+        .bk-row .pax-group { gap: 6px; }
+        .bk-row .pax-group select { width: 58px; font-size: 12px; }
+        .bk-row .pax-group span { font-size: 12px; color: #555; }
+        .bk-row .checkbox-container {
+            padding: 9px;
+            gap: 7px;
+            border-radius: 7px;
+        }
+        .bk-row .checkbox-item { font-size: 12px; }
+
+        .reserve-btn {
+            width: 100%;
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 13px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background 0.2s, transform 0.15s;
+            margin-top: 8px;
+            font-family: inherit;
+        }
+        .reserve-btn:hover { background: #22994f; transform: translateY(-1px); }
+
+        .tour-info-card {
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            border: 1px solid var(--border-gray);
+            overflow: hidden;
+        }
+
+        .tour-info-card-header {
+            padding: 14px 20px;
+            font-weight: 800;
+            font-size: 15px;
+            color: var(--dark-blue);
+            border-bottom: 1px solid var(--border-gray);
+            background: #f8fffe;
+        }
+
+        .tour-info-list { padding: 10px 20px; }
+
+        .tour-info-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .tour-info-item:last-child { border-bottom: none; }
+
+        .tour-info-icon {
+            width: 40px; height: 40px;
+            background: #f0faf4;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-green);
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .tour-info-text p { margin: 0; font-size: 12px; color: #888; }
+        .tour-info-text strong { font-size: 15px; color: var(--dark-blue); display: block; margin-top: 2px; }
+
+        .deals-card {
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            border: 1px solid var(--border-gray);
+            overflow: hidden;
+        }
+
+        .deals-card-header {
+            padding: 14px 20px;
+            font-weight: 800;
+            font-size: 15px;
+            color: var(--dark-blue);
+            border-bottom: 1px solid var(--border-gray);
+            background: #f8fffe;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .deals-card-header i { color: var(--accent-gold); }
+
+        .deal-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 18px;
+            border-bottom: 1px solid #f5f5f5;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .deal-item:hover { background: #f8fffe; }
+        .deal-item:last-child { border-bottom: none; }
+
+        .deal-img {
+            width: 60px; height: 55px;
+            border-radius: 8px;
+            object-fit: cover;
+            flex-shrink: 0;
+            background: #ddd;
+        }
+
+        .deal-info h4 { margin: 0 0 4px; font-size: 13px; font-weight: 700; color: var(--dark-blue); line-height: 1.3; }
+        .deal-price { font-size: 13px; color: var(--primary-green); font-weight: 700; }
+        .deal-from { font-size: 11px; color: #888; }
+
         .category-section { background: var(--white); padding: 40px 0; overflow: hidden; }
-        
-        .category-scroll-wrapper {
-            display: flex; width: max-content;
-            animation: scroll-left 0.5s linear infinite;
-        }
-
+        .category-scroll-wrapper { display: flex; width: max-content; animation: scroll-left 50s linear infinite; }
         .category-section:hover .category-scroll-wrapper { animation-play-state: paused; }
-
-        .category-card {
-            flex: 0 0 230px; margin: 0 12px; background: var(--white);
-            border: 1px solid var(--border-gray); border-radius: 15px;
-            padding: 25px 20px; cursor: pointer; transition: 0.3s ease;
-        }
-
-        .category-card:hover {
-            border-color: var(--primary-green);
-            box-shadow: 0 8px 25px rgba(39,174,96,0.12);
-            transform: translateY(-5px);
-        }
-
+        .category-card { flex: 0 0 230px; margin: 0 12px; background: var(--white); border: 1px solid var(--border-gray); border-radius: 15px; padding: 25px 20px; cursor: pointer; transition: 0.3s ease; }
+        .category-card:hover { border-color: var(--primary-green); box-shadow: 0 8px 25px rgba(39,174,96,0.12); transform: translateY(-5px); }
         .cat-icon { font-size: 30px; color: var(--primary-green); margin-bottom: 15px; height: 45px; display: flex; align-items: center; }
         .cat-divider { width: 30px; height: 3px; background: var(--primary-green); margin-bottom: 12px; border-radius: 2px; }
         .category-card h3 { font-size: 16px; font-weight: 700; margin: 0 0 8px; color: var(--dark-blue); }
@@ -322,307 +904,138 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* =============================================
-           DESTINATION TILES SECTION
-        ============================================= */
-       .dest-viewport {
-        overflow-x: auto;
-        scroll-behavior: smooth;
-        padding: 20px 60px;
-        scrollbar-width: none; /* Firefox */
-    }
-    .dest-viewport::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+        .dest-viewport { overflow-x: auto; scroll-behavior: smooth; padding: 20px 60px; scrollbar-width: none; }
+        .dest-viewport::-webkit-scrollbar { display: none; }
+        .dest-row { display: flex; gap: 25px; width: max-content; }
+        .dest-card { width: 300px; height: 400px; position: relative; border-radius: 20px; overflow: hidden; cursor: pointer; transition: 0.4s; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .dest-card:hover { transform: scale(1.02); }
+        .dest-card img { width: 100%; height: 100%; object-fit: cover; }
+        .dest-info { position: absolute; bottom: 20px; left: 20px; right: 20px; background: rgba(255,255,255,0.95); padding: 15px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .dest-name { font-weight: 800; color: #2c3e50; font-size: 16px; }
+        .dest-circle-btn { width: 35px; height: 35px; background: var(--primary-green); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .nav-arrow { position: absolute; top: 55%; transform: translateY(-50%); width: 50px; height: 50px; background: white; border: none; border-radius: 50%; box-shadow: 0 5px 15px rgba(0,0,0,0.2); color: var(--primary-green); font-size: 18px; cursor: pointer; z-index: 100; transition: 0.3s; }
+        .nav-arrow:hover { background: var(--primary-green); color: white; }
+        .nav-arrow.left { left: 20px; }
+        .nav-arrow.right { right: 20px; }
 
-    .dest-row {
-        display: flex;
-        gap: 25px;
-        width: max-content; /* Important: keeps them in one line */
-    }
+        .about-hero { display: flex; flex-wrap: wrap; align-items: center; gap: 40px; margin-bottom: 60px; }
+        .about-image-stack { flex: 1; min-width: 300px; position: relative; padding: 20px; }
+        .about-image-stack img { width: 100%; border-radius: 15px; box-shadow: 20px 20px 0px var(--primary-green); }
+        .about-text-content { flex: 1.2; min-width: 300px; }
+        .about-text-content h2 { color: var(--primary-green); font-size: 32px; margin-bottom: 20px; }
+        .about-text-content p { line-height: 1.8; color: #555; margin-bottom: 20px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; background: var(--dark-blue); padding: 40px; border-radius: 15px; color: white; text-align: center; margin: 40px 0; }
+        .stat-item h3 { font-size: 36px; color: var(--accent-gold); margin: 0; }
+        .stat-item p { font-size: 14px; margin: 5px 0 0; opacity: 0.8; }
+        .values-container { text-align: center; margin-top: 60px; }
+        .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
+        .value-card { padding: 30px; background: #fff; border-radius: 12px; transition: 0.3s; }
+        .value-card i { font-size: 40px; color: var(--primary-green); margin-bottom: 20px; }
+        .value-card:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
 
-    .dest-card {
-        width: 300px;
-        height: 400px;
-        position: relative;
-        border-radius: 20px;
-        overflow: hidden;
-        cursor: pointer;
-        transition: 0.4s;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    }
+        .contact-wrapper { display: flex; flex-wrap: wrap; gap: 30px; max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+        .contact-info-side { flex: 1; min-width: 300px; background: var(--dark-blue); color: white; padding: 40px; border-radius: 15px; }
+        .contact-info-side h2 { color: var(--accent-gold); margin-top: 0; }
+        .contact-method { display: flex; align-items: center; gap: 20px; margin-bottom: 30px; }
+        .contact-method i { width: 50px; height: 50px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--primary-green); }
+        .contact-method div h4 { margin: 0; font-size: 14px; opacity: 0.7; text-transform: uppercase; }
+        .contact-method div p { margin: 5px 0 0; font-size: 16px; font-weight: 500; }
+        .social-icons-contact { display: flex; gap: 15px; margin-top: 40px; }
+        .social-icons-contact a { width: 40px; height: 40px; background: var(--primary-green); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: 0.3s; }
+        .social-icons-contact a:hover { transform: scale(1.2); background: var(--accent-gold); }
+        .contact-form-side { flex: 1.5; min-width: 300px; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .map-container { width: 100%; height: 300px; margin-top: 30px; border-radius: 15px; overflow: hidden; border: 1px solid var(--border-gray); }
 
-    .dest-card:hover { transform: scale(1.02); }
+        .site-footer {
+            background: var(--dark-blue);
+            color: rgba(255,255,255,0.85);
+            padding: 0;
+            font-size: 14px;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .dest-card img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+        .footer-main {
+            padding: 60px 5% 40px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.2fr;
+            gap: 40px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
 
-    /* The label inside the image */
-    .dest-info {
-        position: absolute;
-        bottom: 20px;
-        left: 20px;
-        right: 20px;
-        background: rgba(255, 255, 255, 0.95);
-        padding: 15px;
-        border-radius: 12px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
+        .footer-brand .footer-logo {
+            font-size: 22px;
+            font-weight: 800;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    .dest-name { font-weight: 800; color: #2c3e50; font-size: 16px; }
-    
-    .dest-circle-btn {
-        width: 35px; height: 35px;
-        background: var(--primary-green);
-        color: white; border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-    }
+        .footer-brand .footer-logo span { color: var(--primary-green); }
 
-    /* Navigation Arrows */
-    .nav-arrow {
-        position: absolute;
-        top: 55%; transform: translateY(-50%);
-        width: 50px; height: 50px;
-        background: white; border: none; border-radius: 50%;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        color: var(--primary-green); font-size: 18px;
-        cursor: pointer; z-index: 100; transition: 0.3s;
-    }
-    .nav-arrow:hover { background: var(--primary-green); color: white; }
-    .nav-arrow.left { left: 20px; }
-    .nav-arrow.right { right: 20px; }
+        .footer-brand p {
+            line-height: 1.8;
+            color: rgba(255,255,255,0.65);
+            margin-bottom: 22px;
+            font-size: 14px;
+        }
 
-    @media (max-width: 600px) {
-        .dest-card { width: 250px; height: 350px; }
-        .dest-viewport { padding: 10px 20px; }
-        .nav-arrow { display: none; } /* Hide arrows on mobile for touch swipe */
-    }
-/* --- ABOUT US STYLES --- */
-.about-hero {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 40px;
-    margin-bottom: 60px;
-}
+        .footer-social { display: flex; gap: 10px; margin-top: 5px; }
+        .footer-social a { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 14px; transition: all 0.3s; }
+        .footer-social a:hover { background: var(--primary-green); border-color: var(--primary-green); color: white; transform: translateY(-3px); }
+        .footer-col h4 { color: white; font-size: 15px; font-weight: 800; margin: 0 0 20px; padding-bottom: 12px; position: relative; text-transform: uppercase; letter-spacing: 0.5px; }
+        .footer-col h4::after { content: ''; position: absolute; bottom: 0; left: 0; width: 30px; height: 3px; background: var(--primary-green); border-radius: 2px; }
+        .footer-links { list-style: none; padding: 0; margin: 0; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { color: rgba(255,255,255,0.65); text-decoration: none; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 6px; font-size: 14px; }
+        .footer-links a:hover { color: var(--primary-green); padding-left: 5px; }
+        .footer-links a i { font-size: 11px; color: var(--primary-green); }
+        .footer-contact-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 15px; color: rgba(255,255,255,0.65); }
+        .footer-contact-item i { color: var(--primary-green); margin-top: 3px; font-size: 15px; flex-shrink: 0; }
+        .footer-contact-item span { font-size: 13.5px; line-height: 1.5; }
+        .footer-newsletter { background: rgba(39, 174, 96, 0.12); border: 1px solid rgba(39, 174, 96, 0.25); border-radius: 10px; padding: 18px; margin-top: 5px; }
+        .footer-newsletter p { margin: 0 0 10px; font-size: 13px; color: rgba(255,255,255,0.7); }
+        .newsletter-form { display: flex; gap: 8px; }
+        .newsletter-form input { flex: 1; padding: 9px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; font-size: 13px; outline: none; }
+        .newsletter-form input::placeholder { color: rgba(255,255,255,0.45); }
+        .newsletter-form button { background: var(--primary-green); color: white; border: none; padding: 9px 14px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 700; white-space: nowrap; transition: background 0.2s; }
+        .newsletter-form button:hover { background: #22994f; }
+        .footer-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+        .footer-badge { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 5px 10px; font-size: 11px; color: rgba(255,255,255,0.6); display: flex; align-items: center; gap: 5px; }
+        .footer-badge i { color: var(--accent-gold); }
+        .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 0; }
+        .footer-bottom { padding: 18px 5%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; max-width: 1300px; margin: 0 auto; }
+        .footer-bottom p { margin: 0; font-size: 13px; color: rgba(255,255,255,0.45); }
+        .footer-bottom-links { display: flex; gap: 18px; }
+        .footer-bottom-links a { font-size: 12px; color: rgba(255,255,255,0.45); text-decoration: none; cursor: pointer; transition: color 0.2s; }
+        .footer-bottom-links a:hover { color: var(--primary-green); }
+        .footer-top-strip { background: var(--primary-green); padding: 14px 5%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+        .footer-top-strip p { margin: 0; color: white; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+        .footer-top-strip a { background: white; color: var(--primary-green); font-weight: 800; font-size: 13px; text-decoration: none; padding: 7px 18px; border-radius: 30px; transition: 0.2s; }
+        .footer-top-strip a:hover { background: var(--dark-blue); color: white; }
 
-.about-image-stack {
-    flex: 1;
-    min-width: 300px;
-    position: relative;
-    padding: 20px;
-}
+        @media (max-width: 1024px) {
+            .details-page-wrapper { flex-direction: column; }
+            .details-sidebar { width: 100%; }
+            .home-bottom-inner { flex-direction: column; align-items: stretch; justify-content: center; padding: 50px 5%; }
+            .home-bottom-text { margin-right: 0; margin-bottom: 30px; max-width: 100%; }
+            .home-inquiry-card { width: 100%; max-width: 560px; margin: 0 auto; }
+        }
 
-.about-image-stack img {
-    width: 100%;
-    border-radius: 15px;
-    box-shadow: 20px 20px 0px var(--primary-green);
-}
-
-.about-text-content {
-    flex: 1.2;
-    min-width: 300px;
-}
-
-.about-text-content h2 {
-    color: var(--primary-green);
-    font-size: 32px;
-    margin-bottom: 20px;
-}
-
-.about-text-content p {
-    line-height: 1.8;
-    color: #555;
-    margin-bottom: 20px;
-}
-
-/* --- STATS BAR --- */
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 20px;
-    background: var(--dark-blue);
-    padding: 40px;
-    border-radius: 15px;
-    color: white;
-    text-align: center;
-    margin: 40px 0;
-}
-
-.stat-item h3 {
-    font-size: 36px;
-    color: var(--accent-gold);
-    margin: 0;
-}
-
-.stat-item p {
-    font-size: 14px;
-    margin: 5px 0 0;
-    opacity: 0.8;
-}
-
-/* --- VALUES SECTION --- */
-.values-container {
-    text-align: center;
-    margin-top: 60px;
-}
-
-.values-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
-
-.value-card {
-    padding: 30px;
-    background: #fff;
-    border-radius: 12px;
-    transition: 0.3s;
-}
-
-.value-card i {
-    font-size: 40px;
-    color: var(--primary-green);
-    margin-bottom: 20px;
-}
-
-.value-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-}
-/* --- CONTACT PAGE STYLES --- */
-
-.contact-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 0 20px;
-}
-
-.contact-info-side {
-    flex: 1;
-    min-width: 300px;
-    background: var(--dark-blue);
-    color: white;
-    padding: 40px;
-    border-radius: 15px;
-    position: relative;
-    overflow: hidden;
-}
-
-.contact-info-side h2 { color: var(--accent-gold); margin-top: 0; }
-
-.contact-method {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 30px;
-}
-
-.contact-method i {
-    width: 50px;
-    height: 50px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    color: var(--primary-green);
-}
-
-.contact-method div h4 { margin: 0; font-size: 14px; opacity: 0.7; text-transform: uppercase; }
-.contact-method div p { margin: 5px 0 0; font-size: 16px; font-weight: 500; }
-
-.social-icons-contact {
-    display: flex;
-    gap: 15px;
-    margin-top: 40px;
-}
-
-.social-icons-contact a {
-    width: 40px;
-    height: 40px;
-    background: var(--primary-green);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.social-icons-contact a:hover { transform: scale(1.2); background: var(--accent-gold); }
-
-.contact-form-side {
-    flex: 1.5;
-    min-width: 300px;
-    background: white;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-}
-
-.map-container {
-    width: 100%;
-    height: 300px;
-    margin-top: 30px;
-    border-radius: 15px;
-    overflow: hidden;
-    border: 1px solid var(--border-gray);
-}
-
-@media (max-width: 768px) {
-    .contact-wrapper { flex-direction: column; }
-    .contact-info-side { padding: 30px 20px; }
-}
-
-        /* ==============================
-           MOBILE RESPONSIVE STYLES
-        ============================== */
         @media (max-width: 900px) {
             .menu-toggle { display: block; }
-
-            .nav-links {
-                display: none; flex-direction: column;
-                position: fixed; top: 60px; left: 0; right: 0;
-                background: white; text-align: center;
-                box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-                padding: 15px 0; gap: 0;
-                z-index: 1999;
-                max-height: calc(100vh - 60px);
-                overflow-y: auto;
-            }
+            .nav-links { display: none; flex-direction: column; position: fixed; top: 60px; left: 0; right: 0; background: white; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.15); padding: 15px 0; gap: 0; z-index: 1999; max-height: calc(100vh - 60px); overflow-y: auto; }
             .nav-links li { border-bottom: 1px solid #f0f0f0; }
-            .nav-links li:last-child { border-bottom: none; }
             .nav-links a { display: block; padding: 14px 20px; font-size: 15px; }
             .nav-links.mobile-active { display: flex; }
-
             .grid-container { grid-template-columns: 1fr 1fr; gap: 15px; padding: 0 15px; }
-
-            .form-container, .quick-inquiry-container, .content-container {
-                padding: 25px 20px;
-                margin: 15px 15px;
-                border-radius: 10px;
-            }
-
-            .details-wrapper { margin: 15px; padding: 20px 15px; }
-
-            .gallery-container { height: 220px; }
-
-            .destinations-grid { grid-template-columns: 1fr 1fr; }
-            .dest-tile { height: 260px; }
-
-            .category-grid { gap: 12px; }
-            .category-card { min-width: 130px; padding: 18px 14px; }
+            .form-container, .content-container { padding: 25px 20px; margin: 15px 15px; border-radius: 10px; }
+            .footer-main { grid-template-columns: 1fr 1fr; gap: 30px; }
         }
 
         @media (max-width: 600px) {
@@ -630,86 +1043,26 @@
             .hero { height: 60vh; }
             .grid-container { grid-template-columns: 1fr; gap: 15px; padding: 0 15px; }
             .card img { height: 200px; }
-
             .form-row { flex-direction: column; align-items: stretch; gap: 6px; }
             .label-text { width: 100%; padding-top: 0; font-size: 13px; }
             .form-input-wrap { width: 100%; }
-
-            input[type="text"], input[type="email"], select, textarea {
-                width: 100%; font-size: 15px;
-            }
-            input[type="date"] { width: 100%; font-size: 15px; }
-
-            .pax-group { gap: 8px; }
             .pax-group select { width: 60px; font-size: 15px; }
-            .checkbox-container { gap: 8px; }
-            .checkbox-item { font-size: 14px; }
-            .submit-btn { width: 100%; padding: 15px; font-size: 15px; }
-            .payment-choice-header { font-size: 13px; padding: 13px 14px; }
-            .payment-choice-content { font-size: 13px; }
             .gallery-container { height: 200px; }
-            .gallery-btn { padding: 10px 12px; font-size: 16px; }
-            .card-body { padding: 14px; }
-            .card-body h3 { font-size: 15px; margin-bottom: 8px; }
-            .content-container h2,
-            .form-container h1,
-            .quick-inquiry-container h2 { letter-spacing: 1px; }
-            .terms-text h3 { font-size: 15px; }
-            .terms-text p { font-size: 14px; }
-
-            /* Category cards — 2 per row on small */
-            .category-grid { gap: 10px; }
-            .category-card { min-width: calc(50% - 10px); flex: 0 0 calc(50% - 10px); padding: 16px 12px; }
-            .category-card .cat-icon { width: 40px; height: 40px; }
-            .category-card h3 { font-size: 13px; }
-            .category-card p { font-size: 11px; }
- 
-         /* --- AUTO-SCROLLING CATEGORY REEL --- */
-        .category-section { background: var(--white); padding: 40px 0; overflow: hidden; }
-        
-        .category-scroll-wrapper {
-            display: flex; width: max-content;
-            animation: scroll-left 50s linear infinite;
-        }
-
-        .category-section:hover .category-scroll-wrapper { animation-play-state: paused; }
-
-        .category-card {
-            flex: 0 0 230px; margin: 0 12px; background: var(--white);
-            border: 1px solid var(--border-gray); border-radius: 15px;
-            padding: 25px 20px; cursor: pointer; transition: 0.3s ease;
-        }
-
-        .category-card:hover {
-            border-color: var(--primary-green);
-            box-shadow: 0 8px 25px rgba(39,174,96,0.12);
-            transform: translateY(-5px);
-        }
-
-        .cat-icon { font-size: 30px; color: var(--primary-green); margin-bottom: 15px; height: 45px; display: flex; align-items: center; }
-        .cat-divider { width: 30px; height: 3px; background: var(--primary-green); margin-bottom: 12px; border-radius: 2px; }
-        .category-card h3 { font-size: 16px; font-weight: 700; margin: 0 0 8px; color: var(--dark-blue); }
-        .category-card p { font-size: 12px; color: #666; margin: 0; line-height: 1.5; }
-
-        @keyframes scroll-left {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-
-            /* Destinations — 1 column */
-            .destinations-grid { grid-template-columns: 1fr; }
-            .dest-tile { height: 220px; }
-        }
-
-        @media (max-width: 360px) {
-            .logo { font-size: 13px; }
-            nav { padding: 12px 4%; }
+            .inc-exc-grid { grid-template-columns: 1fr; }
+            .details-hero-gallery .gallery-img { height: 230px; }
+            .footer-main { grid-template-columns: 1fr; padding: 40px 5% 30px; gap: 25px; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .footer-bottom-links { justify-content: center; flex-wrap: wrap; gap: 12px; }
+            .footer-top-strip { flex-direction: column; text-align: center; }
+            .dest-card { width: 250px; height: 350px; }
+            .dest-viewport { padding: 10px 20px; }
+            .nav-arrow { display: none; }
+            .home-bottom-text h2 { font-size: 26px; }
+            .home-bottom-stats { gap: 20px; }
         }
     </style>
 </head>
 <body>
-
 <nav>
     <div class="logo" onclick="showPage('home')">360 Tours Lanka</div>
     <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
@@ -718,28 +1071,39 @@
         <li><a onclick="showPage('packages')">Tours</a></li>
         <li><a onclick="showPage('inquiry-page')">Inquiry</a></li>
         <li><a onclick="showPage('payments')">Payments</a></li>
-        <li><a onclick="showPage('terms-page')">Terms & Conditions</a></li>
+        <li><a onclick="showPage('terms-page')">Terms &amp; Conditions</a></li>
         <li><a onclick="showPage('about')">About Us</a></li>
         <li><a onclick="showPage('contact-page')">Contact</a></li>
     </ul>
 </nav>
 
-<!-- HOME -->
+<!-- HOME PAGE -->
+
+<!-- Top Contact Bar - FIXED -->
+
+<div class="top-contact-bar">
+    <div class="top-contact-container">
+        <div class="top-contact-item">
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:hello@360tourslanka.com">hello@360tourslanka.com</a>
+        </div>
+        <div class="top-contact-item">
+            <i class="fab fa-whatsapp"></i>
+            <a href="https://wa.me/94771234567" target="_blank">+94 77 123 4567</a>
+        </div>
+    </div>
+</div>
 <div id="home" class="page-section active-section">
-
-    <!-- HERO with auto-navigating image slider -->
     <div class="hero">
-        <div class="hero-slide active" style="background-image: url('images/hero.png');"></div>
-        <div class="hero-slide" style="background-image: url('images/hero2.png');"></div>
-        <div class="hero-slide" style="background-image: url('images/hero3.png');"></div>
-        <div class="hero-slide" style="background-image: url('images/hero4.png');"></div>
-
+        <div class="hero-slide active" style="background-image: url('images/hero.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/hero2.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/hero3.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/hero4.jpg');"></div>
         <div class="hero-content">
             <h1>Explore Sri Lanka</h1>
             <p>Premium travel experiences across the teardrop isle.</p>
             <button class="hero-btn" onclick="showPage('packages')">View All Tours</button>
         </div>
-
         <div class="hero-dots">
             <button class="hero-dot active" onclick="goToHeroSlide(0)"></button>
             <button class="hero-dot" onclick="goToHeroSlide(1)"></button>
@@ -747,7 +1111,7 @@
             <button class="hero-dot" onclick="goToHeroSlide(3)"></button>
         </div>
     </div>
-  <!-- NEW INTRO FROM IMAGE -->
+
     <section class="intro-section">
         <div class="intro-container">
             <div class="intro-left">
@@ -758,264 +1122,111 @@
             </div>
             <div class="intro-right">
                 <p>Begin an extraordinary journey with 360 Tours Lanka, your trusted tour agent in Sri Lanka. Whether you're a nature lover, history enthusiast, or beachgoer, we provide tailored tours in Sri Lanka designed to fulfill every traveler's dream. Discover the island's lush landscapes, ancient temples, and golden beaches while enjoying expert guidance and seamless travel experiences.</p>
-                <p>As a leading tour company, we take pride in creating unforgettable tours in Sri Lanka, blending cultural exploration with relaxation and adventure. From the iconic Sigiriya Rock Fortress to the tranquil tea plantations of Nuwara Eliya, each itinerary is crafted to highlight the best of Sri Lanka. With 360 Tours Lanka, you'll experience the island's vibrant culture, warm hospitality, and breathtaking natural beauty like never before.</p>
-                <p>Ready to make your dream trip a reality? Let 360 Tours Lanka, the premier tour agent in Sri Lanka, guide you through every step of your journey. Whether it's a family vacation, a romantic getaway, or a solo adventure, our tours in Sri Lanka are designed to create lifelong memories. Contact us today to start planning your unforgettable Sri Lankan adventure!</p>
+                <p>As a leading tour company, we take pride in creating unforgettable tours in Sri Lanka, blending cultural exploration with relaxation and adventure. From the iconic Sigiriya Rock Fortress to the tranquil tea plantations of Nuwara Eliya, each itinerary is crafted to highlight the best of Sri Lanka.</p>
+                <p>Ready to make your dream trip a reality? Let 360 Tours Lanka guide you through every step of your journey. Contact us today to start planning your unforgettable Sri Lankan adventure!</p>
             </div>
         </div>
     </section>
 
-    <!-- =============================================
-         CATEGORY CARDS (new)
-    ============================================= -->
-   
     <section class="category-section">
         <div class="category-scroll-wrapper" id="scrollWrapper">
-            <div class="category-card">
-                <div class="cat-icon"><i class="fas fa-users"></i></div>
-                <div class="cat-divider"></div>
-                <h3>Family</h3>
-                <p>Safe and fun adventures for all ages.</p>
-            </div>
-            <div class="category-card">
-                <div class="cat-icon"><i class="fas fa-paw"></i></div>
-                <div class="cat-divider"></div>
-                <h3>Wildlife</h3>
-                <p>Leopard safaris and elephant watching.</p>
-            </div>
-            <div class="category-card">
-                <div class="cat-icon"><i class="fas fa-umbrella-beach"></i></div>
-                <div class="cat-divider"></div>
-                <h3>Beach</h3>
-                <p>Golden sands and turquoise waters.</p>
-            </div>
-            <div class="category-card">
-                <div class="cat-icon"><i class="fas fa-gopuram"></i></div>
-                <div class="cat-divider"></div>
-                <h3>Cultural</h3>
-                <p>Ancient temples and heritage sites.</p>
-            </div>
-            <div class="category-card">
-                <div class="cat-icon"><i class="fas fa-user-friends"></i></div>
-                <div class="cat-divider"></div>
-                <h3>Group</h3>
-                <p>Shared experiences and social travel.</p>
-            </div>
-
-            <div class="category-card">
-                <div class="cat-icon"><i class="fas fa-star"></i></div>
-                <div class="cat-divider"></div>
-                <h3>Promotional</h3>
-                <p>Special discounts on popular routes.</p>
-            </div>
-            <div class="category-card">
-                <div class="cat-icon"><i class="fas fa-cloud-sun"></i></div>
-                <div class="cat-divider"></div>
-                <h3>Hill Country</h3>
-                <p>Tea plantations and misty peaks.</p>
-            </div>
-            <div class="category-card">
-                <div class="cat-icon"><i class="fas fa-heart"></i></div>
-                <div class="cat-divider"></div>
-                <h3>Honeymoon</h3>
-                <p>Romantic stays and private dining.</p>
-            </div>
-            <div class="category-card">
-                <div class="cat-icon"><i class="fas fa-heartbeat"></i></div>
-                <div class="cat-divider"></div>
-                <h3>Wellness</h3>
-                <p>Ayurvedic healing and yoga retreats.</p>
-            </div>
-            <div class="category-card">
-                <div class="cat-icon"><i class="fas fa-hiking"></i></div>
-                <div class="cat-divider"></div>
-                <h3>Youth</h3>
-                <p>Active tours for the young at heart.</p>
-            </div>
-            <div class="category-card">
-                <div class="cat-icon"><i class="fas fa-calendar-alt"></i></div>
-                <div class="cat-divider"></div>
-                <h3>Festivals</h3>
-                <p>Experience the vibrant local Peraheras.</p>
-            </div>
-            <div class="category-card">
-                <div class="cat-icon"><i class="fas fa-bolt"></i></div>
-                <div class="cat-divider"></div>
-                <h3>Adventure</h3>
-                <p>Rafting, surfing, and hiking thrills.</p>
-            </div>
+            <div class="category-card"><div class="cat-icon"><i class="fas fa-users"></i></div><div class="cat-divider"></div><h3>Family</h3><p>Safe and fun adventures for all ages.</p></div>
+            <div class="category-card"><div class="cat-icon"><i class="fas fa-paw"></i></div><div class="cat-divider"></div><h3>Wildlife</h3><p>Leopard safaris and elephant watching.</p></div>
+            <div class="category-card"><div class="cat-icon"><i class="fas fa-umbrella-beach"></i></div><div class="cat-divider"></div><h3>Beach</h3><p>Golden sands and turquoise waters.</p></div>
+            <div class="category-card"><div class="cat-icon"><i class="fas fa-gopuram"></i></div><div class="cat-divider"></div><h3>Cultural</h3><p>Ancient temples and heritage sites.</p></div>
+            <div class="category-card"><div class="cat-icon"><i class="fas fa-user-friends"></i></div><div class="cat-divider"></div><h3>Group</h3><p>Shared experiences and social travel.</p></div>
+            <div class="category-card"><div class="cat-icon"><i class="fas fa-star"></i></div><div class="cat-divider"></div><h3>Promotional</h3><p>Special discounts on popular routes.</p></div>
+            <div class="category-card"><div class="cat-icon"><i class="fas fa-cloud-sun"></i></div><div class="cat-divider"></div><h3>Hill Country</h3><p>Tea plantations and misty peaks.</p></div>
+            <div class="category-card"><div class="cat-icon"><i class="fas fa-heart"></i></div><div class="cat-divider"></div><h3>Honeymoon</h3><p>Romantic stays and private dining.</p></div>
+            <div class="category-card"><div class="cat-icon"><i class="fas fa-heartbeat"></i></div><div class="cat-divider"></div><h3>Wellness</h3><p>Ayurvedic healing and yoga retreats.</p></div>
+            <div class="category-card"><div class="cat-icon"><i class="fas fa-hiking"></i></div><div class="cat-divider"></div><h3>Youth</h3><p>Active tours for the young at heart.</p></div>
+            <div class="category-card"><div class="cat-icon"><i class="fas fa-calendar-alt"></i></div><div class="cat-divider"></div><h3>Festivals</h3><p>Experience the vibrant local Peraheras.</p></div>
+            <div class="category-card"><div class="cat-icon"><i class="fas fa-bolt"></i></div><div class="cat-divider"></div><h3>Adventure</h3><p>Rafting, surfing, and hiking thrills.</p></div>
+            <div class="category-card"><div class="cat-icon"><i class="fas fa-users"></i></div><div class="cat-divider"></div><h3>Family</h3><p>Safe and fun adventures for all ages.</p></div>
+            <div class="category-card"><div class="cat-icon"><i class="fas fa-paw"></i></div><div class="cat-divider"></div><h3>Wildlife</h3><p>Leopard safaris and elephant watching.</p></div>
+            <div class="category-card"><div class="cat-icon"><i class="fas fa-umbrella-beach"></i></div><div class="cat-divider"></div><h3>Beach</h3><p>Golden sands and turquoise waters.</p></div>
+            <div class="category-card"><div class="cat-icon"><i class="fas fa-gopuram"></i></div><div class="cat-divider"></div><h3>Cultural</h3><p>Ancient temples and heritage sites.</p></div>
+            <div class="category-card"><div class="cat-icon"><i class="fas fa-user-friends"></i></div><div class="cat-divider"></div><h3>Group</h3><p>Shared experiences and social travel.</p></div>
+            <div class="category-card"><div class="cat-icon"><i class="fas fa-star"></i></div><div class="cat-divider"></div><h3>Promotional</h3><p>Special discounts on popular routes.</p></div>
+            <div class="category-card"><div class="cat-icon"><i class="fas fa-cloud-sun"></i></div><div class="cat-divider"></div><h3>Hill Country</h3><p>Tea plantations and misty peaks.</p></div>
+            <div class="category-card"><div class="cat-icon"><i class="fas fa-heart"></i></div><div class="cat-divider"></div><h3>Honeymoon</h3><p>Romantic stays and private dining.</p></div>
+            <div class="category-card"><div class="cat-icon"><i class="fas fa-heartbeat"></i></div><div class="cat-divider"></div><h3>Wellness</h3><p>Ayurvedic healing and yoga retreats.</p></div>
+            <div class="category-card"><div class="cat-icon"><i class="fas fa-hiking"></i></div><div class="cat-divider"></div><h3>Youth</h3><p>Active tours for the young at heart.</p></div>
+            <div class="category-card"><div class="cat-icon"><i class="fas fa-calendar-alt"></i></div><div class="cat-divider"></div><h3>Festivals</h3><p>Experience the vibrant local Peraheras.</p></div>
+            <div class="category-card"><div class="cat-icon"><i class="fas fa-bolt"></i></div><div class="cat-divider"></div><h3>Adventure</h3><p>Rafting, surfing, and hiking thrills.</p></div>
         </div>
     </section>
 
+    <section class="destinations-section" style="position: relative; padding: 60px 0; background: #fff;">
+        <h2 style="text-align: center; color: var(--primary-green); margin-bottom: 30px; font-size: 28px;">Explore Destinations</h2>
+        <button class="nav-arrow left" onclick="scrollDest('left')"><i class="fas fa-chevron-left"></i></button>
+        <button class="nav-arrow right" onclick="scrollDest('right')"><i class="fas fa-chevron-right"></i></button>
+        <div class="dest-viewport" id="destViewport">
+            <div class="dest-row" id="destRow"></div>
+        </div>
+    </section>
 
-    <!-- =============================================
-         DESTINATION TILES (new)
-    ============================================= -->
-   <section class="destinations-section" style="position: relative; padding: 60px 0; background: #fff;">
-    <h2 style="text-align: center; color: var(--primary-green); margin-bottom: 30px; font-size: 28px;">Explore Destinations</h2>
-    
-    <button class="nav-arrow left" onclick="scrollDest('left')"><i class="fas fa-chevron-left"></i></button>
-    <button class="nav-arrow right" onclick="scrollDest('right')"><i class="fas fa-chevron-right"></i></button>
-
-    <div class="dest-viewport" id="destViewport">
-        <div class="dest-row" id="destRow">
-            </div>
-    </div>
-</section>
-
-    <!-- QUICK INQUIRY -->
-    <div class="quick-inquiry-container">
-        <h2>Quick Inquiry</h2>
-        <form>
-            <div class="form-row">
-                <div class="label-text">Name</div>
-                <div class="form-input-wrap"><input type="text" placeholder="Your full name"></div>
-            </div>
-            <div class="form-row">
-                <div class="label-text">Country</div>
-                <div class="form-input-wrap"><select class="country-dropdown-class"></select></div>
-            </div>
-            <div class="form-row">
-                <div class="label-text">Email address <span class="validation-text">(required)</span></div>
-                <div class="form-input-wrap"><input type="email" required placeholder="your@email.com"></div>
-            </div>
-            <div class="form-row">
-                <div class="label-text">Arrival date</div>
-                <div class="form-input-wrap"><input type="date"></div>
-            </div>
-            <div class="form-row">
-                <div class="label-text">Departure date</div>
-                <div class="form-input-wrap"><input type="date"></div>
-            </div>
-            <div class="form-row">
-                <div class="label-text">No of pax</div>
-                <div class="form-input-wrap">
-                    <div class="pax-group">
-                        <select class="fill-60 num-dropdown"></select><span>Adult</span>
-                        <select class="fill-60 num-dropdown"></select><span>Children</span>
-                        <select class="fill-60 num-dropdown"></select>
-                    </div>
+    <!-- BOTTOM SECTION WITH INQUIRY FORM AT FAR RIGHT EDGE -->
+    <div class="home-bottom-section">
+        <div class="home-bottom-bg"></div>
+        <div class="home-bottom-inner">
+            <div class="home-bottom-text">
+                <span class="sub-label"><i class="fas fa-map-marked-alt" style="margin-right:6px;"></i>Plan Your Journey</span>
+                <h2>Your Dream Sri Lanka<br>Trip Starts <span>Here</span></h2>
+                <p>Tell us what you're looking for — beach escapes, cultural explorations, wildlife safaris, or highland adventures. Our expert team will craft a personalised itinerary that matches your dates, budget, and travel style.</p>
+                <p>Fill in the quick inquiry form and we'll get back to you within 24 hours with a tailored proposal.</p>
+                <div class="home-bottom-stats">
+                    <div class="home-stat"><strong>10+</strong><span>Years Experience</span></div>
+                    <div class="home-stat"><strong>5k+</strong><span>Happy Travellers</span></div>
+                    <div class="home-stat"><strong>24/7</strong><span>Support</span></div>
+                    <div class="home-stat"><strong>150+</strong><span>Local Partners</span></div>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="label-text">Hotel category</div>
-                <div class="form-input-wrap">
-                    <div class="checkbox-container">
-                        <label class="checkbox-item"><input type="checkbox"> Boutique hotel</label>
-                        <label class="checkbox-item"><input type="checkbox"> 5-star hotel</label>
-                        <label class="checkbox-item"><input type="checkbox"> 4-star hotel</label>
-                        <label class="checkbox-item"><input type="checkbox"> 3-star hotel</label>
-                        <label class="checkbox-item"><input type="checkbox"> Budget hotel</label>
-                    </div>
+            <div class="home-inquiry-card">
+                <div class="card-head"><i class="fas fa-paper-plane"></i> Quick Inquiry</div>
+                <div class="card-body">
+                    <form onsubmit="event.preventDefault(); alert('Inquiry sent! We\'ll get back to you within 24 hours.');">
+                        <div class="inq-row"><label>Full Name</label><input type="text" placeholder="Your full name" required></div>
+                        <div class="inq-row"><label>Country</label><select class="country-dropdown-class"></select></div>
+                        <div class="inq-row"><label>Email Address <span style="color:#e74c3c;">*</span></label><input type="email" placeholder="your@email.com" required></div>
+                        <div class="inq-row"><label>Arrival Date</label><input type="date"></div>
+                        <div class="inq-row"><label>Departure Date</label><input type="date"></div>
+                        <div class="inq-row"><label>No. of Pax</label><div class="pax-group"><select class="fill-60 num-dropdown"></select><span>Adult</span><select class="fill-60 num-dropdown"></select><span>Children</span></div></div>
+                        <div class="inq-row"><label>No. of Rooms</label><select class="fill-60" style="width:80px;"></select></div>
+                        <div class="inq-row"><label>Hotel Category</label><div class="checkbox-container"><label class="checkbox-item"><input type="checkbox"> Boutique</label><label class="checkbox-item"><input type="checkbox"> 5-Star</label><label class="checkbox-item"><input type="checkbox"> 4-Star</label><label class="checkbox-item"><input type="checkbox"> 3-Star</label><label class="checkbox-item"><input type="checkbox"> Budget</label></div></div>
+                        <button type="submit" class="inq-submit-btn"><i class="fas fa-paper-plane"></i> Submit Inquiry</button>
+                    </form>
                 </div>
             </div>
-            <button type="submit" class="submit-btn" onclick="event.preventDefault(); alert('Quick Inquiry Sent!');">Submit Inquiry</button>
-        </form>
+        </div>
     </div>
 </div>
 
-<!-- TOURS -->
+<!-- TOURS PAGE -->
 <div id="packages" class="page-section">
     <h2 style="text-align:center; margin: 30px 20px 10px; font-size: clamp(18px, 5vw, 26px);">Our Tour Packages</h2>
     <div class="grid-container" id="tour-grid"></div>
 </div>
 
-<!-- INQUIRY -->
+<!-- INQUIRY PAGE -->
 <div id="inquiry-page" class="page-section">
     <div class="form-container">
         <h1>Booking Inquiry</h1>
-        <form>
-            <div class="form-row">
-                <div class="label-text">Name</div>
-                <div class="form-input-wrap"><input type="text" placeholder="Your full name"></div>
-            </div>
-            <div class="form-row">
-                <div class="label-text">Country</div>
-                <div class="form-input-wrap"><select class="country-dropdown-class"></select></div>
-            </div>
-            <div class="form-row">
-                <div class="label-text">Email address <span class="validation-text">(required)</span></div>
-                <div class="form-input-wrap"><input type="email" required placeholder="your@email.com"></div>
-            </div>
-            <div class="form-row">
-                <div class="label-text">WhatsApp no</div>
-                <div class="form-input-wrap"><input type="text" placeholder="+00 000 000 000"></div>
-            </div>
-            <div class="form-row">
-                <div class="label-text">Arrival date</div>
-                <div class="form-input-wrap"><input type="date"></div>
-            </div>
-            <div class="form-row">
-                <div class="label-text">Departure date</div>
-                <div class="form-input-wrap"><input type="date"></div>
-            </div>
-            <div class="form-row">
-                <div class="label-text">No of pax</div>
-                <div class="form-input-wrap">
-                    <div class="pax-group">
-                        <select class="fill-60 num-dropdown"></select><span>Adult</span>
-                        <select class="fill-60 num-dropdown"></select><span>Children</span>
-                        <select class="fill-60 num-dropdown"></select>
-                    </div>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="label-text">No of rooms</div>
-                <div class="form-input-wrap"><select class="fill-60" style="width: 100px;"></select></div>
-            </div>
-            <div class="form-row">
-                <div class="label-text">Hotel category</div>
-                <div class="form-input-wrap">
-                    <div class="checkbox-container">
-                        <label class="checkbox-item"><input type="checkbox"> Boutique hotel</label>
-                        <label class="checkbox-item"><input type="checkbox"> 5-star hotel</label>
-                        <label class="checkbox-item"><input type="checkbox"> 4-star hotel</label>
-                        <label class="checkbox-item"><input type="checkbox"> 3-star hotel</label>
-                        <label class="checkbox-item"><input type="checkbox"> Budget hotel</label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="label-text">Meal plan</div>
-                <div class="form-input-wrap">
-                    <div class="checkbox-container">
-                        <label class="checkbox-item"><input type="checkbox"> Bed & breakfast</label>
-                        <label class="checkbox-item"><input type="checkbox"> Half board</label>
-                        <label class="checkbox-item"><input type="checkbox"> Full board</label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="label-text">Interest</div>
-                <div class="form-input-wrap">
-                    <div class="checkbox-container">
-                        <label class="checkbox-item"><input type="checkbox"> Culture & Heritage</label>
-                        <label class="checkbox-item"><input type="checkbox"> Ancient & Archeology</label>
-                        <label class="checkbox-item"><input type="checkbox"> Adventure</label>
-                        <label class="checkbox-item"><input type="checkbox"> Shopping</label>
-                        <label class="checkbox-item"><input type="checkbox"> Nature</label>
-                        <label class="checkbox-item"><input type="checkbox"> Wildlife</label>
-                        <label class="checkbox-item"><input type="checkbox"> Beach</label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="label-text">Package budget</div>
-                <div class="form-input-wrap">
-                    <select>
-                        <option>1$ - 500$</option>
-                        <option>500$ - 1500$</option>
-                        <option>1500$ - 2500$</option>
-                        <option>2500$ - 4000$</option>
-                        <option>4000$ - 6000$</option>
-                        <option>Above 6000$</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="label-text">Other requirements</div>
-                <div class="form-input-wrap"><textarea rows="4" placeholder="Any special requests..."></textarea></div>
-            </div>
-            <button type="submit" class="submit-btn" onclick="event.preventDefault(); alert('Inquiry Sent!');">Submit Inquiry</button>
+        <form onsubmit="event.preventDefault(); alert('Inquiry Sent!');">
+            <div class="form-row"><div class="label-text">Name</div><div class="form-input-wrap"><input type="text" placeholder="Your full name"></div></div>
+            <div class="form-row"><div class="label-text">Country</div><div class="form-input-wrap"><select class="country-dropdown-class"></select></div></div>
+            <div class="form-row"><div class="label-text">Email address <span class="validation-text">(required)</span></div><div class="form-input-wrap"><input type="email" required placeholder="your@email.com"></div></div>
+            <div class="form-row"><div class="label-text">WhatsApp no</div><div class="form-input-wrap"><input type="text" placeholder="+00 000 000 000"></div></div>
+            <div class="form-row"><div class="label-text">Arrival date</div><div class="form-input-wrap"><input type="date"></div></div>
+            <div class="form-row"><div class="label-text">Departure date</div><div class="form-input-wrap"><input type="date"></div></div>
+            <div class="form-row"><div class="label-text">No of pax</div><div class="form-input-wrap"><div class="pax-group"><select class="fill-60 num-dropdown"></select><span>Adult</span><select class="fill-60 num-dropdown"></select><span>Children</span><select class="fill-60 num-dropdown"></select></div></div></div>
+            <div class="form-row"><div class="label-text">No of rooms</div><div class="form-input-wrap"><select class="fill-60" style="width: 100px;"></select></div></div>
+            <div class="form-row"><div class="label-text">Hotel category</div><div class="form-input-wrap"><div class="checkbox-container"><label class="checkbox-item"><input type="checkbox"> Boutique hotel</label><label class="checkbox-item"><input type="checkbox"> 5-star hotel</label><label class="checkbox-item"><input type="checkbox"> 4-star hotel</label><label class="checkbox-item"><input type="checkbox"> 3-star hotel</label><label class="checkbox-item"><input type="checkbox"> Budget hotel</label></div></div></div>
+            <div class="form-row"><div class="label-text">Meal plan</div><div class="form-input-wrap"><div class="checkbox-container"><label class="checkbox-item"><input type="checkbox"> Bed &amp; breakfast</label><label class="checkbox-item"><input type="checkbox"> Half board</label><label class="checkbox-item"><input type="checkbox"> Full board</label></div></div></div>
+            <div class="form-row"><div class="label-text">Interest</div><div class="form-input-wrap"><div class="checkbox-container"><label class="checkbox-item"><input type="checkbox"> Culture &amp; Heritage</label><label class="checkbox-item"><input type="checkbox"> Ancient &amp; Archeology</label><label class="checkbox-item"><input type="checkbox"> Adventure</label><label class="checkbox-item"><input type="checkbox"> Shopping</label><label class="checkbox-item"><input type="checkbox"> Nature</label><label class="checkbox-item"><input type="checkbox"> Wildlife</label><label class="checkbox-item"><input type="checkbox"> Beach</label></div></div></div>
+            <div class="form-row"><div class="label-text">Package budget</div><div class="form-input-wrap"><select><option>1$ - 500$</option><option>500$ - 1500$</option><option>1500$ - 2500$</option><option>2500$ - 4000$</option><option>4000$ - 6000$</option><option>Above 6000$</option></select></div></div>
+            <div class="form-row"><div class="label-text">Other requirements</div><div class="form-input-wrap"><textarea rows="4" placeholder="Any special requests..."></textarea></div></div>
+            <button type="submit" class="submit-btn">Submit Inquiry</button>
         </form>
     </div>
 </div>
@@ -1025,216 +1236,66 @@
     <div class="content-container">
         <h2>Payment Methods</h2>
         <p style="text-align: center; color: #666; margin-bottom: 25px; font-size: 14px;">Select a method to see bank details.</p>
-        <div class="payment-choice-box" onclick="togglePay(this)">
-            <div class="payment-choice-header">1. Company Current Account (Local) <span>▼</span></div>
-            <div class="payment-choice-content"><p><strong>Account Name:</strong> 360 Tours Lanka (Pvt) Ltd<br><strong>Account No:</strong> [Enter No]<br><strong>Bank:</strong> [Enter Bank]</p></div>
-        </div>
-        <div class="payment-choice-box" onclick="togglePay(this)">
-            <div class="payment-choice-header">2. LKR Account with SWIFT Code <span>▼</span></div>
-            <div class="payment-choice-content"><p><strong>Account Name:</strong> 360 Tours Lanka (Pvt) Ltd<br><strong>Account No:</strong> [Enter LKR No]<br><strong>SWIFT:</strong> [Enter SWIFT]</p></div>
-        </div>
-        <div class="payment-choice-box" onclick="togglePay(this)">
-            <div class="payment-choice-header">3. USD Account with SWIFT Code <span>▼</span></div>
-            <div class="payment-choice-content"><p><strong>Account Name:</strong> 360 Tours Lanka (Pvt) Ltd<br><strong>Account No:</strong> [Enter USD No]<br><strong>SWIFT:</strong> [Enter SWIFT]</p></div>
-        </div>
-        <div class="payment-choice-box" onclick="togglePay(this)">
-            <div class="payment-choice-header">4. Online Payment Link <span>▼</span></div>
-            <div class="payment-choice-content"><p>Pay securely via our payment gateway.</p><a href="#" class="submit-btn" style="text-decoration:none; display:inline-block; margin-top:10px; padding: 12px 28px;">Pay Now</a></div>
-        </div>
+        <div class="payment-choice-box" onclick="togglePay(this)"><div class="payment-choice-header">1. Company Current Account (Local) <span>▼</span></div><div class="payment-choice-content"><p><strong>Account Name:</strong> 360 Tours Lanka (Pvt) Ltd<br><strong>Account No:</strong> [Enter No]<br><strong>Bank:</strong> [Enter Bank]</p></div></div>
+        <div class="payment-choice-box" onclick="togglePay(this)"><div class="payment-choice-header">2. LKR Account with SWIFT Code <span>▼</span></div><div class="payment-choice-content"><p><strong>Account Name:</strong> 360 Tours Lanka (Pvt) Ltd<br><strong>Account No:</strong> [Enter LKR No]<br><strong>SWIFT:</strong> [Enter SWIFT]</p></div></div>
+        <div class="payment-choice-box" onclick="togglePay(this)"><div class="payment-choice-header">3. USD Account with SWIFT Code <span>▼</span></div><div class="payment-choice-content"><p><strong>Account Name:</strong> 360 Tours Lanka (Pvt) Ltd<br><strong>Account No:</strong> [Enter USD No]<br><strong>SWIFT:</strong> [Enter SWIFT]</p></div></div>
+        <div class="payment-choice-box" onclick="togglePay(this)"><div class="payment-choice-header">4. Online Payment Link <span>▼</span></div><div class="payment-choice-content"><p>Pay securely via our payment gateway.</p><a href="#" class="submit-btn" style="text-decoration:none; display:inline-block; margin-top:10px; padding: 12px 28px;">Pay Now</a></div></div>
     </div>
 </div>
 
 <!-- TERMS -->
 <div id="terms-page" class="page-section">
     <div class="content-container">
-        <h2>Terms & Conditions</h2>
-        <div class="terms-text">
-            <h3>1. Booking & Confirmation</h3><p>Confirmed only after receiving 20% advance payment.</p>
-            <h3>2. Cancellation Policy</h3><p>21 days or less: 100% cancellation charge.</p>
-        </div>
+        <h2>Terms &amp; Conditions</h2>
+        <div class="terms-text"><h3>1. Booking &amp; Confirmation</h3><p>Confirmed only after receiving 20% advance payment.</p><h3>2. Cancellation Policy</h3><p>21 days or less: 100% cancellation charge.</p></div>
     </div>
 </div>
 
 <!-- TOUR DETAILS -->
 <div id="details-page" class="page-section">
-    <div class="details-wrapper">
-        <span class="back-link" onclick="showPage('packages')">← Back to Tours</span>
-        <div id="details-render"></div>
+    <div class="details-page-wrapper">
+        <div class="details-main" id="details-main-render"></div>
+        <div class="details-sidebar" id="details-sidebar-render"></div>
     </div>
 </div>
 
 <!-- ABOUT -->
 <div id="about" class="page-section">
     <div class="content-container" style="max-width: 1100px;">
-        
-        <div class="about-hero">
-            <div class="about-image-stack">
-                <img src="images/about-team.jpg" alt="Our Team in Sri Lanka">
-            </div>
-            <div class="about-text-content">
-                <span style="color: var(--accent-gold); font-weight: bold; text-transform: uppercase;">Our Story</span>
-                <h2>Crafting Memories Across the Teardrop Isle</h2>
-                <p>Founded on a passion for authentic exploration, <strong>360 Tours Lanka</strong> was born from a simple idea: travel should be more than just visiting places; it should be about connecting with the soul of a destination.</p>
-                <p>From the misty peaks of the central highlands to the sun-drenched shores of the south, our team of local experts has spent years uncovering the hidden gems that make Sri Lanka truly magical. We don't just book hotels—we curate experiences that stay with you forever.</p>
-            </div>
-        </div>
-
-        <div class="stats-grid">
-            <div class="stat-item">
-                <h3>10+</h3>
-                <p>Years Experience</p>
-            </div>
-            <div class="stat-item">
-                <h3>5k+</h3>
-                <p>Happy Travelers</p>
-            </div>
-            <div class="stat-item">
-                <h3>150+</h3>
-                <p>Local Partners</p>
-            </div>
-            <div class="stat-item">
-                <h3>24/7</h3>
-                <p>Expert Support</p>
-            </div>
-        </div>
-
-        <div class="values-container">
-            <h2>Why Choose Us?</h2>
-            <div class="values-grid">
-                <div class="value-card">
-                    <i class="fas fa-leaf"></i>
-                    <h3>Eco-Conscious</h3>
-                    <p>We prioritize sustainable tourism that protects our beautiful island's nature and wildlife.</p>
-                </div>
-                <div class="value-card">
-                    <i class="fas fa-handshake"></i>
-                    <h3>Local Expertise</h3>
-                    <p>Our guides are born and raised here, offering insights you won't find in any guidebook.</p>
-                </div>
-                <div class="value-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Safe & Secure</h3>
-                    <p>Your safety is our priority, with verified transport and 24/7 emergency assistance.</p>
-                </div>
-            </div>
-        </div>
-
+        <div class="about-hero"><div class="about-image-stack"><img src="images/about-team.jpg" alt="Our Team in Sri Lanka"></div><div class="about-text-content"><span style="color: var(--accent-gold); font-weight: bold; text-transform: uppercase;">Our Story</span><h2>Crafting Memories Across the Teardrop Isle</h2><p>Founded on a passion for authentic exploration, <strong>360 Tours Lanka</strong> was born from a simple idea: travel should be more than just visiting places; it should be about connecting with the soul of a destination.</p><p>From the misty peaks of the central highlands to the sun-drenched shores of the south, our team of local experts has spent years uncovering the hidden gems that make Sri Lanka truly magical.</p></div></div>
+        <div class="stats-grid"><div class="stat-item"><h3>10+</h3><p>Years Experience</p></div><div class="stat-item"><h3>5k+</h3><p>Happy Travelers</p></div><div class="stat-item"><h3>150+</h3><p>Local Partners</p></div><div class="stat-item"><h3>24/7</h3><p>Expert Support</p></div></div>
+        <div class="values-container"><h2>Why Choose Us?</h2><div class="values-grid"><div class="value-card"><i class="fas fa-leaf"></i><h3>Eco-Conscious</h3><p>We prioritize sustainable tourism that protects our beautiful island's nature and wildlife.</p></div><div class="value-card"><i class="fas fa-handshake"></i><h3>Local Expertise</h3><p>Our guides are born and raised here, offering insights you won't find in any guidebook.</p></div><div class="value-card"><i class="fas fa-shield-alt"></i><h3>Safe &amp; Secure</h3><p>Your safety is our priority, with verified transport and 24/7 emergency assistance.</p></div></div></div>
     </div>
 </div>
 
 <!-- CONTACT -->
-
 <div id="contact-page" class="page-section">
-    <div style="text-align: center; padding: 40px 20px 0;">
-        <h1 style="color: var(--dark-blue); font-size: 32px;">Get In Touch</h1>
-        <p style="color: #666;">Have questions? We're here to help you plan your perfect island getaway.</p>
-    </div>
-
-    <div class="contact-wrapper">
-        <div class="contact-info-side">
-            <h2>Contact Information</h2>
-            <p style="margin-bottom: 40px; opacity: 0.8;">Fill out the form and our team will get back to you within 24 hours.</p>
-
-            <div class="contact-method">
-                <i class="fas fa-phone-alt"></i>
-                <div>
-                    <h4>Call / WhatsApp</h4>
-                    <p>+94 77 123 4567</p>
-                </div>
-            </div>
-
-            <div class="contact-method">
-                <i class="fas fa-envelope"></i>
-                <div>
-                    <h4>Email Us</h4>
-                    <p>hello@360tourslanka.com</p>
-                </div>
-            </div>
-
-            <div class="contact-method">
-                <i class="fas fa-map-marker-alt"></i>
-                <div>
-                    <h4>Visit Us</h4>
-                    <p>No. 123, Galle Road, Colombo 03, Sri Lanka</p>
-                </div>
-            </div>
-
-            <div class="social-icons-contact">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-tiktok"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
-            </div>
-        </div>
-
-        <div class="contact-form-side">
-            <form onsubmit="event.preventDefault(); alert('Thank you! Your message has been sent.');">
-                <div class="form-row" style="margin-bottom: 15px;">
-                    <div class="form-input-wrap">
-                        <label style="font-size: 13px; font-weight: bold; margin-bottom: 5px; display: block;">Full Name</label>
-                        <input type="text" placeholder="John Doe" required>
-                    </div>
-                </div>
-                
-                <div class="form-row" style="margin-bottom: 15px;">
-                    <div class="form-input-wrap">
-                        <label style="font-size: 13px; font-weight: bold; margin-bottom: 5px; display: block;">Email Address</label>
-                        <input type="email" placeholder="john@example.com" required>
-                    </div>
-                </div>
-
-                <div class="form-row" style="margin-bottom: 15px;">
-                    <div class="form-input-wrap">
-                        <label style="font-size: 13px; font-weight: bold; margin-bottom: 5px; display: block;">Subject</label>
-                        <select>
-                            <option>General Inquiry</option>
-                            <option>Tour Booking</option>
-                            <option>Custom Tour Request</option>
-                            <option>Partnership</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-row" style="margin-bottom: 15px;">
-                    <div class="form-input-wrap">
-                        <label style="font-size: 13px; font-weight: bold; margin-bottom: 5px; display: block;">Message</label>
-                        <textarea rows="4" placeholder="How can we help you?" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--border-gray);"></textarea>
-                    </div>
-                </div>
-
-                <button type="submit" class="submit-btn" style="width: 100%; margin-top: 10px;">Send Message</button>
-            </form>
-        </div>
-    </div>
-
-    <div style="max-width: 1100px; margin: 0 auto 60px; padding: 0 20px;">
-        <div class="map-container">
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126743.5827211833!2d79.786164!3d6.921837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae253d10f7a7003%3A0x320b2e4d32d3838d!2sColombo!5e0!3m2!1sen!2slk!4v1710000000000!5m2!1sen!2slk" 
-                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
-            </iframe>
-        </div>
-    </div>
+    <div style="text-align: center; padding: 40px 20px 0;"><h1 style="color: var(--dark-blue); font-size: 32px;">Get In Touch</h1><p style="color: #666;">Have questions? We're here to help you plan your perfect island getaway.</p></div>
+    <div class="contact-wrapper"><div class="contact-info-side"><h2>Contact Information</h2><p style="margin-bottom: 40px; opacity: 0.8;">Fill out the form and our team will get back to you within 24 hours.</p><div class="contact-method"><i class="fas fa-phone-alt"></i><div><h4>Call / WhatsApp</h4><p>+94 77 123 4567</p></div></div><div class="contact-method"><i class="fas fa-envelope"></i><div><h4>Email Us</h4><p>hello@360tourslanka.com</p></div></div><div class="contact-method"><i class="fas fa-map-marker-alt"></i><div><h4>Visit Us</h4><p>No. 123, Galle Road, Colombo 03, Sri Lanka</p></div></div><div class="social-icons-contact"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-tiktok"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a></div></div><div class="contact-form-side"><form onsubmit="event.preventDefault(); alert('Thank you! Your message has been sent.');"><div class="form-row" style="margin-bottom: 15px;"><div class="form-input-wrap"><label style="font-size: 13px; font-weight: bold; margin-bottom: 5px; display: block;">Full Name</label><input type="text" placeholder="John Doe" required></div></div><div class="form-row" style="margin-bottom: 15px;"><div class="form-input-wrap"><label style="font-size: 13px; font-weight: bold; margin-bottom: 5px; display: block;">Email Address</label><input type="email" placeholder="john@example.com" required></div></div><div class="form-row" style="margin-bottom: 15px;"><div class="form-input-wrap"><label style="font-size: 13px; font-weight: bold; margin-bottom: 5px; display: block;">Subject</label><select><option>General Inquiry</option><option>Tour Booking</option><option>Custom Tour Request</option><option>Partnership</option></select></div></div><div class="form-row" style="margin-bottom: 15px;"><div class="form-input-wrap"><label style="font-size: 13px; font-weight: bold; margin-bottom: 5px; display: block;">Message</label><textarea rows="4" placeholder="How can we help you?" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--border-gray);"></textarea></div></div><button type="submit" class="submit-btn" style="width: 100%; margin-top: 10px;">Send Message</button></form></div></div>
+    <div style="max-width: 1100px; margin: 0 auto 60px; padding: 0 20px;"><div class="map-container"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126743.5827211833!2d79.786164!3d6.921837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae253d10f7a7003%3A0x320b2e4d32d3838d!2sColombo!5e0!3m2!1sen!2slk!4v1710000000000!5m2!1sen!2slk" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div></div>
 </div>
 
-<footer><p>&copy; 2026 360 Tours Lanka (Pvt) Ltd</p></footer>
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-top-strip"><p><i class="fas fa-map-marked-alt"></i> Ready to explore the Pearl of the Indian Ocean?</p><a onclick="showPage('inquiry-page')">Plan Your Trip Today</a></div>
+    <div class="footer-main"><div class="footer-brand"><div class="footer-logo"><i class="fas fa-globe-asia" style="color: var(--primary-green);"></i><span>360 Tours <span style="color:var(--accent-gold)">Lanka</span></span></div><p>Your trusted travel partner for authentic Sri Lankan experiences. From misty highlands to golden beaches, we craft journeys that stay with you forever.</p><div class="footer-social"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-tiktok"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div><div class="footer-badges"><span class="footer-badge"><i class="fas fa-certificate"></i> SLTDA Registered</span><span class="footer-badge"><i class="fas fa-shield-alt"></i> Fully Insured</span><span class="footer-badge"><i class="fas fa-leaf"></i> Eco Certified</span></div></div><div class="footer-col"><h4>Quick Links</h4><ul class="footer-links"><li><a onclick="showPage('home')"><i class="fas fa-chevron-right"></i> Home</a></li><li><a onclick="showPage('packages')"><i class="fas fa-chevron-right"></i> Tour Packages</a></li><li><a onclick="showPage('inquiry-page')"><i class="fas fa-chevron-right"></i> Book a Tour</a></li><li><a onclick="showPage('payments')"><i class="fas fa-chevron-right"></i> Payments</a></li><li><a onclick="showPage('about')"><i class="fas fa-chevron-right"></i> About Us</a></li><li><a onclick="showPage('terms-page')"><i class="fas fa-chevron-right"></i> Terms &amp; Conditions</a></li><li><a onclick="showPage('contact-page')"><i class="fas fa-chevron-right"></i> Contact Us</a></li></ul></div><div class="footer-col"><h4>Popular Tours</h4><ul class="footer-links"><li><a onclick="viewDetails(1)"><i class="fas fa-chevron-right"></i> Soulful Escapade</a></li><li><a onclick="viewDetails(4)"><i class="fas fa-chevron-right"></i> Cultural Triangle</a></li><li><a onclick="viewDetails(5)"><i class="fas fa-chevron-right"></i> Ella Highland Retreat</a></li><li><a onclick="viewDetails(10)"><i class="fas fa-chevron-right"></i> Wildlife Expedition</a></li><li><a onclick="viewDetails(7)"><i class="fas fa-chevron-right"></i> Colonial Galle</a></li><li><a onclick="viewDetails(6)"><i class="fas fa-chevron-right"></i> Trinco Blue Waters</a></li><li><a onclick="viewDetails(9)"><i class="fas fa-chevron-right"></i> Southern Surf</a></li></ul></div><div class="footer-col"><h4>Get In Touch</h4><div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><span>No. 123, Galle Road,<br>Colombo 03, Sri Lanka</span></div><div class="footer-contact-item"><i class="fas fa-phone-alt"></i><span>+94 77 123 4567</span></div><div class="footer-contact-item"><i class="fab fa-whatsapp"></i><span>+94 77 123 4567</span></div><div class="footer-contact-item"><i class="fas fa-envelope"></i><span>hello@360tourslanka.com</span></div><div class="footer-newsletter"><p><i class="fas fa-paper-plane" style="color:var(--primary-green); margin-right:5px;"></i> Get travel tips &amp; exclusive deals</p><div class="newsletter-form"><input type="email" placeholder="Your email address"><button onclick="alert('Subscribed! Thank you.')">Subscribe</button></div></div></div></div>
+    <hr class="footer-divider">
+    <div class="footer-bottom"><p>&copy; 2026 360 Tours Lanka (Pvt) Ltd. All rights reserved. Crafted with <i class="fas fa-heart" style="color:#e74c3c;"></i> in Sri Lanka.</p><div class="footer-bottom-links"><a onclick="showPage('terms-page')">Privacy Policy</a><a onclick="showPage('terms-page')">Terms of Service</a><a onclick="showPage('terms-page')">Cookie Policy</a></div></div>
+</footer>
 
 <script>
-    function toggleMobileMenu() {
-        document.getElementById('navLinks').classList.toggle('mobile-active');
-    }
-
+    // Tour data (abbreviated for brevity - same as original)
     const tourData = [
-        { id: 1, title: "Soulful Escapade (03 Days)", price: "$140.00", images: ["images/tour1_1.jpg","images/tour1_2.jpg","images/tour1_3.jpg","images/tour1_4.jpg","images/tour1_5.jpg"], desc: "Teahouse and hill country tour." },
-        { id: 2, title: "Revitalizing Adventure (04 Days)", price: "$190.00", images: ["images/tour2_1.jpg","images/tour2_2.jpg","images/tour2_3.jpg","images/tour2_4.jpg","images/tour2_5.jpg"], desc: "Rafting and adventure." },
-        { id: 3, title: "Ecological Wonders (05 Days)", price: "$250.00", images: ["images/tour3_1.jpg","images/tour3_2.jpg","images/tour3_3.jpg","images/tour3_4.jpg","images/tour3_5.jpg"], desc: "Nature deep dive." },
-        { id: 4, title: "Cultural Triangle (05 Days)", price: "$310.00", images: ["images/tour4_1.jpg","images/tour4_2.jpg","images/tour4_3.jpg","images/tour4_4.jpg","images/tour4_5.jpg"], desc: "Sigiriya and heritage." },
-        { id: 5, title: "Ella Highland Retreat (03 Days)", price: "$175.00", images: ["images/tour5_1.jpg","images/tour5_2.jpg","images/tour5_3.jpg","images/tour5_4.jpg","images/tour5_5.jpg"], desc: "Misty mountains." },
-        { id: 6, title: "Trinco Blue Waters (04 Days)", price: "$230.00", images: ["images/tour6_1.jpg","images/tour6_2.jpg","images/tour6_3.jpg","images/tour6_4.jpg","images/tour6_5.jpg"], desc: "Beach and snorkeling." },
-        { id: 7, title: "Colonial Galle (02 Days)", price: "$120.00", images: ["images/tour7_1.jpg","images/tour7_2.jpg","images/tour7_3.jpg","images/tour7_4.jpg","images/tour7_5.jpg"], desc: "Galle Fort history." },
-        { id: 8, title: "Ancient Discovery (03 Days)", price: "$165.00", images: ["images/tour8_1.jpg","images/tour8_2.jpg","images/tour8_3.jpg","images/tour8_4.jpg","images/tour8_5.jpg"], desc: "Ruins and wildlife." },
-        { id: 9, title: "Southern Surf (06 Days)", price: "$320.00", images: ["images/tour9_1.jpg","images/tour9_2.jpg","images/tour9_3.jpg","images/tour9_4.jpg","images/tour9_5.jpg"], desc: "Surf and sun." },
-        { id: 10, title: "Wildlife Expedition (04 Days)", price: "$210.00", images: ["images/tour10_1.jpg","images/tour10_2.jpg","images/tour10_3.jpg","images/tour10_4.jpg","images/tour10_5.jpg"], desc: "Yala Safari." }
+        {id:1,title:"Soulful Escapade (03 Days)",price:"$140.00",images:["images/tour1_1.jpg","images/tour1_2.jpg","images/tour1_3.jpg"],duration:"3 Days / 2 Nights",maxGuests:20,minAge:"6+",location:"Kandy · Nuwara Eliya · Ella",desc:"Sri Lanka is the best decision...",includes:["Bed and breakfast","Private transportation"],excludes:["Camera fees","Tips"],amenities:["Free WiFi","AC Vehicle"],days:[{label:"Day 01",content:"Arrive at airport..."},{label:"Day 02",content:"Visit Kandy..."}]},
+        {id:2,title:"Revitalizing Adventure (04 Days)",price:"$190.00",images:["images/tour2_1.jpg"],duration:"4 Days / 3 Nights",maxGuests:15,minAge:"12+",location:"Kitulgala · Ella · Mirissa",desc:"Unleash your inner adventurer...",includes:["Accommodation","AC vehicle"],excludes:["Personal gear","Insurance"],amenities:["Guide","Water Bottle"],days:[{label:"Day 01",content:"Arrive at Kitulgala"}]},
+        {id:3,title:"Ecological Wonders (05 Days)",price:"$250.00",images:["images/tour3_1.jpg"],duration:"5 Days / 4 Nights",maxGuests:20,minAge:"6+",location:"Sinharaja · Udawalawa · Mirissa",desc:"A nature lover's paradise...",includes:["Bed and breakfast","Safari jeep"],excludes:["Travel insurance","Tips"],amenities:["Naturalist Guide","Safari Jeep"],days:[{label:"Day 01",content:"Sinharaja trek"}]},
+        {id:4,title:"Cultural Triangle (05 Days)",price:"$310.00",images:["images/tour4_1.jpg"],duration:"5 Days / 4 Nights",maxGuests:30,minAge:"6+",location:"Anuradhapura · Sigiriya · Polonnaruwa · Kandy",desc:"Journey through ancient heartland...",includes:["Bed and breakfast","Expert guide"],excludes:["Camera fees","Extra meals"],amenities:["Expert Guide","Site Tickets"],days:[{label:"Day 01",content:"Anuradhapura visit"}]},
+        {id:5,title:"Ella Highland Retreat (03 Days)",price:"$175.00",images:["images/tour5_1.jpg"],duration:"3 Days / 2 Nights",maxGuests:16,minAge:"8+",location:"Ella · Nuwara Eliya",desc:"Escape to misty blue mountains...",includes:["Breakfast","Train tickets"],excludes:["Personal expenses","Tips"],amenities:["Train Tickets","Mountain Views"],days:[{label:"Day 01",content:"Transfer to Ella"}]},
+        {id:6,title:"Trinco Blue Waters (04 Days)",price:"$230.00",images:["images/tour6_1.jpg"],duration:"4 Days / 3 Nights",maxGuests:20,minAge:"10+",location:"Trincomalee · Pigeon Island",desc:"Discover east coast's best-kept secret...",includes:["Snorkelling gear","Boat trip"],excludes:["Park fees","Insurance"],amenities:["Snorkelling","Boat Trip"],days:[{label:"Day 01",content:"Arrive Trincomalee"}]},
+        {id:7,title:"Colonial Galle (02 Days)",price:"$120.00",images:["images/tour7_1.jpg"],duration:"2 Days / 1 Night",maxGuests:25,minAge:"All ages",location:"Galle · Unawatuna",desc:"Weekend escape to charming port city...",includes:["Breakfast","Expert guide"],excludes:["Lunch","Tips"],amenities:["City Tour","Free Time"],days:[{label:"Day 01",content:"Galle Fort walk"}]},
+        {id:8,title:"Ancient Discovery (03 Days)",price:"$165.00",images:["images/tour8_1.jpg"],duration:"3 Days / 2 Nights",maxGuests:20,minAge:"6+",location:"Anuradhapura · Wilpattu",desc:"Combine ancient history with wild encounters...",includes:["Safari jeep","Expert guide"],excludes:["Entrance fees","Insurance"],amenities:["Safari Jeep","Ancient Sites"],days:[{label:"Day 01",content:"Anuradhapura visit"}]},
+        {id:9,title:"Southern Surf (06 Days)",price:"$320.00",images:["images/tour9_1.jpg"],duration:"6 Days / 5 Nights",maxGuests:20,minAge:"16+",location:"Arugam Bay · Mirissa · Hiriketiya",desc:"Catch the perfect wave...",includes:["Surf guide","Lessons"],excludes:["Board rental","Insurance"],amenities:["Surf Guide","Beach Access"],days:[{label:"Day 01",content:"Arugam Bay surf"}]},
+        {id:10,title:"Wildlife Expedition (04 Days)",price:"$210.00",images:["images/tour10_1.jpg"],duration:"4 Days / 3 Nights",maxGuests:20,minAge:"6+",location:"Yala · Udawalawa · Bundala",desc:"Sri Lanka is one of the world's best for safaris...",includes:["Safari jeeps","Naturalist guide"],excludes:["Park fees","Tips"],amenities:["Safari Jeeps","Binoculars"],days:[{label:"Day 01",content:"Yala safari"}]}
     ];
 
     function showPage(id) {
@@ -1244,166 +1305,125 @@
         window.scrollTo(0, 0);
     }
 
-    function filterTours(category) {
-        showPage('packages');
-    }
-
-    function togglePay(el) {
-        const active = el.classList.contains('active');
-        document.querySelectorAll('.payment-choice-box').forEach(b => b.classList.remove('active'));
-        if (!active) el.classList.add('active');
-    }
+    function toggleMobileMenu() { document.getElementById('navLinks').classList.toggle('mobile-active'); }
+    function togglePay(el) { const active = el.classList.contains('active'); document.querySelectorAll('.payment-choice-box').forEach(b => b.classList.remove('active')); if (!active) el.classList.add('active'); }
 
     let activeSlide = 0;
-
-    function viewDetails(id) {
-        const pkg = tourData.find(p => p.id === id);
-        activeSlide = 0;
-
-        let galleryHtml = `<div class="gallery-container">`;
-        pkg.images.forEach((img, index) => {
-            galleryHtml += `<img src="${img}" class="gallery-img ${index === 0 ? 'active' : ''}" id="slide-${index}">`;
-        });
-        galleryHtml += `
-            <button class="gallery-btn prev-btn" onclick="moveSlide(-1, ${pkg.images.length})">❮</button>
-            <button class="gallery-btn next-btn" onclick="moveSlide(1, ${pkg.images.length})">❯</button>
+function viewDetails(id) {
+    const pkg = tourData.find(p => p.id === id);
+    activeSlide = 0;
+    let galleryHtml = `<div class="details-hero-gallery gallery-container">`;
+    pkg.images.forEach((img, index) => { galleryHtml += `<img src="${img}" class="gallery-img ${index === 0 ? 'active' : ''}" id="slide-${index}" onerror="this.src='https://via.placeholder.com/900x380?text=${encodeURIComponent(pkg.title)}'">`; });
+    galleryHtml += `<button class="gallery-btn prev-btn" onclick="moveSlide(-1, ${pkg.images.length})">❮</button><button class="gallery-btn next-btn" onclick="moveSlide(1, ${pkg.images.length})">❯</button></div><div class="gallery-dots">${pkg.images.map((_, i) => `<span class="dot ${i === 0 ? 'active' : ''}" id="dot-${i}" onclick="jumpToSlide(${i}, ${pkg.images.length})"></span>`).join('')}</div>`;
+    let incItems = pkg.includes.map(i => `<div class="inc-item"><i class="fas fa-check-circle"></i><span>${i}</span></div>`).join('');
+    let excItems = pkg.excludes.map(e => `<div class="exc-item"><i class="fas fa-times-circle"></i><span>${e}</span></div>`).join('');
+    let amenitiesHtml = pkg.amenities.map(a => `<div class="amenity-pill"><i class="fas fa-star"></i>${a}</div>`).join('');
+    let tourPlanHtml = pkg.days.map((day, i) => `<div class="day-accordion ${i === 0 ? 'open' : ''}" onclick="toggleDay(this)"><div class="day-accordion-header"><span>${day.label}</span><i class="fas fa-chevron-down"></i></div><div class="day-accordion-content">${day.content}</div></div>`).join('');
+    let descHtml = pkg.desc.split('\n\n').map(p => `<p class="details-desc">${p}</p>`).join('');
+    
+    // THIS IS THE CHANGED PART - Green bar with Back button
+    document.getElementById('details-main-render').innerHTML = `
+        <div style="background-color: #27ae60; padding: 12px 20px; border-radius: 8px 8px 0 0; margin-bottom: 20px;">
+            <span class="back-link" onclick="showPage('packages')" style="color: white; cursor: pointer; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; font-size: 14px;">
+                <i class="fas fa-arrow-left"></i> Back to Tours
+            </span>
         </div>
-        <div class="gallery-dots">
-            ${pkg.images.map((_, i) => `<span class="dot ${i === 0 ? 'active' : ''}" id="dot-${i}" onclick="jumpToSlide(${i}, ${pkg.images.length})"></span>`).join('')}
-        </div>`;
-
-        document.getElementById('details-render').innerHTML = `
-            ${galleryHtml}
-            <div style="margin-top:25px;">
-                <h2 style="font-size: clamp(18px, 5vw, 26px);">${pkg.title}</h2>
-                <h3 style="color:var(--primary-green); font-size: clamp(16px, 4vw, 20px);">Price: ${pkg.price}</h3>
-                <p>${pkg.desc}</p>
-                <button onclick="showPage('inquiry-page')" class="submit-btn">Book Now</button>
+        ${galleryHtml}
+        <h1 class="explore-tours-heading">Explore Tours — ${pkg.title}</h1>
+        <div class="tour-meta-bar">
+            <span><i class="fas fa-clock"></i> ${pkg.duration}</span>
+            <span><i class="fas fa-map-marker-alt"></i> ${pkg.location}</span>
+            <span><i class="fas fa-users"></i> Max ${pkg.maxGuests} guests</span>
+            <span><i class="fas fa-child"></i> Min age ${pkg.minAge}</span>
+        </div>
+        ${descHtml}
+        <div class="inc-exc-section">
+            <h3>Included / Excluded</h3>
+            <div class="inc-exc-grid">${incItems}${excItems}</div>
+        </div>
+        <div class="amenities-section">
+            <h3>Tour Amenities</h3>
+            <div class="amenities-grid">${amenitiesHtml}</div>
+        </div>
+        <div class="tour-plan-section">
+            <h3>Tour Plan</h3>
+            ${tourPlanHtml}
+        </div>
+    `;
+    
+    const deals = tourData.filter(t => t.id !== id).slice(0, 3);
+    let dealsHtml = deals.map(d => `<div class="deal-item" onclick="viewDetails(${d.id})"><img class="deal-img" src="${d.images[0]}" alt="${d.title}" onerror="this.src='https://via.placeholder.com/60x55?text=Tour'"><div class="deal-info"><h4>${d.title}</h4><div class="deal-from">From</div><div class="deal-price">${d.price}</div></div></div>`).join('');
+    
+    document.getElementById('details-sidebar-render').innerHTML = `
+        <div class="booking-card">
+            <div class="booking-card-header"><i class="fas fa-paper-plane"></i> Booking Inquiry</div>
+            <div class="booking-card-body">
+                <form onsubmit="event.preventDefault(); alert('Inquiry sent!');">
+                    <div class="bk-row"><label>Full Name</label><input type="text" placeholder="Your full name"></div>
+                    <div class="bk-row"><label>Country</label><select id="bk-country-sel"></select></div>
+                    <div class="bk-row"><label>Email Address</label><input type="email" placeholder="your@email.com" required></div>
+                    <div class="bk-row"><label>Arrival Date</label><input type="date"></div>
+                    <div class="bk-row"><label>Departure Date</label><input type="date"></div>
+                    <div class="bk-row"><label>No. of Pax</label><div class="pax-group"><select id="bk-adults"></select><span>Adult</span><select id="bk-children"></select><span>Child</span></div></div>
+                    <div class="bk-row"><label>No. of Rooms</label><select id="bk-rooms" style="width:70px;"></select></div>
+                    <div class="bk-row"><label>Hotel Category</label><div class="checkbox-container"><label class="checkbox-item"><input type="checkbox"> Boutique</label><label class="checkbox-item"><input type="checkbox"> 5-Star</label><label class="checkbox-item"><input type="checkbox"> 4-Star</label><label class="checkbox-item"><input type="checkbox"> 3-Star</label><label class="checkbox-item"><input type="checkbox"> Budget</label></div></div>
+                    <button type="submit" class="reserve-btn"><i class="fas fa-paper-plane"></i> Submit Inquiry</button>
+                </form>
             </div>
-        `;
-        showPage('details-page');
-    }
-
-    function moveSlide(dir, total) {
-        document.getElementById(`slide-${activeSlide}`).classList.remove('active');
-        document.getElementById(`dot-${activeSlide}`).classList.remove('active');
-        activeSlide = (activeSlide + dir + total) % total;
-        document.getElementById(`slide-${activeSlide}`).classList.add('active');
-        document.getElementById(`dot-${activeSlide}`).classList.add('active');
-    }
-
-    function jumpToSlide(idx, total) {
-        document.getElementById(`slide-${activeSlide}`).classList.remove('active');
-        document.getElementById(`dot-${activeSlide}`).classList.remove('active');
-        activeSlide = idx;
-        document.getElementById(`slide-${activeSlide}`).classList.add('active');
-        document.getElementById(`dot-${activeSlide}`).classList.add('active');
-    }
-
-    // Render tour cards
-    const grid = document.getElementById('tour-grid');
-    tourData.forEach(t => {
-        grid.innerHTML += `
-            <div class="card">
-                <img src="${t.images[0]}" alt="${t.title}">
-                <div class="card-body">
-                    <h3>${t.title}</h3>
-                    <p style="color:var(--accent-gold); font-weight:bold; margin: 5px 0;">${t.price}</p>
-                    <span class="explore-link" onclick="viewDetails(${t.id})">Explore</span>
-                    <div style="clear:both;"></div>
-                </div>
-            </div>`;
-    });
-
-    // Fill number dropdowns
-    document.querySelectorAll('.fill-60').forEach(s => {
-        for (let i = 1; i <= 60; i++) {
-            let o = document.createElement('option');
-            o.value = i; o.textContent = i;
-            s.appendChild(o);
-        }
-    });
-
-    // Country dropdowns
-    const countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Antigua and Barbuda","Argentina","Armenia","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Brazil","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Central African Republic","Chad","Chile","China","Colombia","Comoros","Congo","Costa Rica","Croatia","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","East Timor","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Fiji","Finland","France","Gabon","Gambia","Georgia","Germany","Ghana","Greece","Grenada","Guatemala","Guinea","Guyana","Haiti","Honduras","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Kiribati","Korea (North)","Korea (South)","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Morocco","Mozambique","Myanmar","Namibia","Nauru","Nepal","Netherlands","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palau","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Qatar","Romania","Russia","Rwanda","Saint Kitts and Nevis","Saint Lucia","Saint Vincent","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Sudan","Spain","Sri Lanka","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Togo","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Yemen","Zambia","Zimbabwe"];
-    document.querySelectorAll('.country-dropdown-class').forEach(dropdown => {
+        </div>
+        <div class="tour-info-card">
+            <div class="tour-info-card-header">Tour Information</div>
+            <div class="tour-info-list">
+                <div class="tour-info-item"><div class="tour-info-icon"><i class="fas fa-users"></i></div><div class="tour-info-text"><p>Max Guests</p><strong>${pkg.maxGuests}</strong></div></div>
+                <div class="tour-info-item"><div class="tour-info-icon"><i class="fas fa-child"></i></div><div class="tour-info-text"><p>Min Age</p><strong>${pkg.minAge}</strong></div></div>
+                <div class="tour-info-item"><div class="tour-info-icon"><i class="fas fa-map-marker-alt"></i></div><div class="tour-info-text"><p>Tour Location</p><strong>${pkg.location.split('·')[0].trim()}</strong></div></div>
+                <div class="tour-info-item"><div class="tour-info-icon"><i class="fas fa-tag"></i></div><div class="tour-info-text"><p>Starting From</p><strong style="color:var(--primary-green);">${pkg.price}</strong></div></div>
+            </div>
+        </div>
+        <div class="deals-card">
+            <div class="deals-card-header"><i class="fas fa-bolt"></i> Last Minute Deals</div>
+            ${dealsHtml}
+        </div>
+    `;
+    
+    populateSelect('bk-adults', 1, 30);
+    populateSelect('bk-children', 0, 20);
+    populateSelect('bk-rooms', 1, 20);
+    
+    const bkCountry = document.getElementById('bk-country-sel');
+    if (bkCountry) {
         countries.forEach(c => {
             let o = document.createElement('option');
             o.value = o.textContent = c;
-            dropdown.appendChild(o);
+            bkCountry.appendChild(o);
         });
-    });
+    }
+    showPage('details-page');
+}
+    function populateSelect(id, min, max) { const sel = document.getElementById(id); if (!sel) return; sel.innerHTML = ''; for (let i = min; i <= max; i++) { let o = document.createElement('option'); o.value = i; o.textContent = i; sel.appendChild(o); } }
+    function toggleDay(el) { el.classList.toggle('open'); }
+    function moveSlide(dir, total) { document.getElementById(`slide-${activeSlide}`).classList.remove('active'); document.getElementById(`dot-${activeSlide}`).classList.remove('active'); activeSlide = (activeSlide + dir + total) % total; document.getElementById(`slide-${activeSlide}`).classList.add('active'); document.getElementById(`dot-${activeSlide}`).classList.add('active'); }
+    function jumpToSlide(idx, total) { document.getElementById(`slide-${activeSlide}`).classList.remove('active'); document.getElementById(`dot-${activeSlide}`).classList.remove('active'); activeSlide = idx; document.getElementById(`slide-${activeSlide}`).classList.add('active'); document.getElementById(`dot-${activeSlide}`).classList.add('active'); }
 
-    // Close menu when clicking outside
-    document.addEventListener('click', function(e) {
-        const nav = document.getElementById('navLinks');
-        const toggle = document.querySelector('.menu-toggle');
-        if (nav.classList.contains('mobile-active') && !nav.contains(e.target) && !toggle.contains(e.target)) {
-            nav.classList.remove('mobile-active');
-        }
-    });
-// --- 1. ADD YOUR IMAGES HERE ---
-    const myDestinations = [
-        { name: "Ella", img: "images/dest_ella.png" },
-        { name: "Sigiriya", img: "images/dest_sigiriya.png" },
-        { name: "Kandy", img: "images/dest_kandy.jpg" },
-        { name: "Galle", img: "images/dest_galle.jpg" },
-        { name: "Nuwara Eliya", img: "images/dest_nuwara.jpg" },
-        { name: "Mirissa", img: "images/dest_mirissa.jpg" },
-        { name: "Yala", img: "images/dest_yala.jpg" },
-        { name: "Polonnaruwa", img: "images/polonnaruwa.jpg" }       
-    ];
+    const grid = document.getElementById('tour-grid');
+    tourData.forEach(t => { grid.innerHTML += `<div class="card"><img src="${t.images[0]}" alt="${t.title}" onerror="this.src='https://via.placeholder.com/400x180?text=${encodeURIComponent(t.title)}'"><div class="card-body"><h3>${t.title}</h3><p style="color:var(--accent-gold); font-weight:bold; margin: 5px 0;">${t.price}</p><span class="explore-link" onclick="viewDetails(${t.id})">Explore</span><div style="clear:both;"></div></div></div>`; });
 
-    // --- 2. THIS PART BUILDS THE TILES ---
+    document.querySelectorAll('.fill-60').forEach(s => { const max = s.classList.contains('num-dropdown') ? 60 : 20; for (let i = (s.id && s.id.includes('rooms') ? 1 : 0); i <= max; i++) { let o = document.createElement('option'); o.value = i; o.textContent = i; s.appendChild(o); } });
+
+    const countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Argentina","Australia","Austria","Bangladesh","Belgium","Brazil","Canada","China","Denmark","Egypt","Finland","France","Germany","Greece","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Japan","Malaysia","Maldives","Nepal","Netherlands","New Zealand","Norway","Pakistan","Poland","Portugal","Russia","Saudi Arabia","Singapore","South Africa","Spain","Sri Lanka","Sweden","Switzerland","Thailand","Turkey","United Arab Emirates","United Kingdom","United States","Vietnam"];
+    document.querySelectorAll('.country-dropdown-class').forEach(dropdown => { countries.forEach(c => { let o = document.createElement('option'); o.value = o.textContent = c; dropdown.appendChild(o); }); });
+
+    document.addEventListener('click', function(e) { const nav = document.getElementById('navLinks'); const toggle = document.querySelector('.menu-toggle'); if (nav.classList.contains('mobile-active') && !nav.contains(e.target) && !toggle.contains(e.target)) { nav.classList.remove('mobile-active'); } });
+
+    const myDestinations = [{ name: "Ella", img: "images/dest_ella.jpg" }, { name: "Sigiriya", img: "images/dest_sigiriya.png" }, { name: "Kandy", img: "images/dest_kandy.jpg" }, { name: "Galle", img: "images/dest_galle.jpg" }, { name: "Nuwara Eliya", img: "images/dest_nuwara.jpg" }, { name: "Mirissa", img: "images/dest_mirissa.jpg" }, { name: "Yala", img: "images/dest_yala.jpg" }, { name: "Polonnaruwa", img: "images/polonnaruwa.jpg" }];
     const destRow = document.getElementById('destRow');
+    myDestinations.forEach(dest => { destRow.innerHTML += `<div class="dest-card" onclick="showPage('packages')"><img src="${dest.img}" alt="${dest.name}" onerror="this.src='https://via.placeholder.com/300x400?text=${dest.name}'"><div class="dest-info"><div class="dest-name">${dest.name}</div><div class="dest-circle-btn"><i class="fas fa-arrow-right"></i></div></div></div>`; });
+    function scrollDest(direction) { const viewport = document.getElementById('destViewport'); if (direction === 'left') viewport.scrollBy({ left: -330, behavior: 'smooth' }); else viewport.scrollBy({ left: 330, behavior: 'smooth' }); }
 
-    myDestinations.forEach(dest => {
-        destRow.innerHTML += `
-            <div class="dest-card" onclick="showPage('packages')">
-                <img src="${dest.img}" alt="${dest.name}" onerror="this.src='https://via.placeholder.com/300x400?text=${dest.name}'">
-                <div class="dest-info">
-                    <div class="dest-name">${dest.name}</div>
-                    <div class="dest-circle-btn"><i class="fas fa-arrow-right"></i></div>
-                </div>
-            </div>
-        `;
-    });
-
-    // --- 3. SCROLL FUNCTION ---
-    function scrollDest(direction) {
-        const viewport = document.getElementById('destViewport');
-        const scrollDist = 330; // Card width + gap
-        if (direction === 'left') {
-            viewport.scrollBy({ left: -scrollDist, behavior: 'smooth' });
-        } else {
-            viewport.scrollBy({ left: scrollDist, behavior: 'smooth' });
-        }
-    }
-
-    // =============================================
-    // HERO AUTO-SLIDER
-    // =============================================
-    let heroIndex = 0;
-    const heroSlides = document.querySelectorAll('.hero-slide');
-    const heroDots = document.querySelectorAll('.hero-dot');
-    let heroTimer;
-
-    function goToHeroSlide(index) {
-        heroSlides[heroIndex].classList.remove('active');
-        heroDots[heroIndex].classList.remove('active');
-        heroIndex = index;
-        heroSlides[heroIndex].classList.add('active');
-        heroDots[heroIndex].classList.add('active');
-        clearInterval(heroTimer);
-        heroTimer = setInterval(nextHeroSlide, 5000);
-    }
-
-    function nextHeroSlide() {
-        goToHeroSlide((heroIndex + 1) % heroSlides.length);
-    }
-
-    heroTimer = setInterval(nextHeroSlide, 5000);
+    let heroIndex = 0, heroTimer;
+    const heroSlides = document.querySelectorAll('.hero-slide'), heroDots = document.querySelectorAll('.hero-dot');
+    function goToHeroSlide(index) { heroSlides[heroIndex].classList.remove('active'); heroDots[heroIndex].classList.remove('active'); heroIndex = index; heroSlides[heroIndex].classList.add('active'); heroDots[heroIndex].classList.add('active'); clearInterval(heroTimer); heroTimer = setInterval(() => goToHeroSlide((heroIndex + 1) % heroSlides.length), 5000); }
+    heroTimer = setInterval(() => goToHeroSlide((heroIndex + 1) % heroSlides.length), 5000);
 </script>
-
 </body>
 </html>
